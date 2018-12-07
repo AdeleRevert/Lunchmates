@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class NavBar extends Component {
   constructor(props) {
@@ -13,8 +14,8 @@ class NavBar extends Component {
           alt="logo"
         />
         <h1>Great App Name</h1>
-        <button>Sign up</button>
-        <button>Log in</button>
+        <Link to="/signup"><button>Sign up</button></Link>
+        <Link to="/login"><button>Log in</button></Link>
       </section>
     );
   }

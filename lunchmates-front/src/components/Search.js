@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 
-
 class Search extends Component {
   constructor(props) {
     super(props);
@@ -16,16 +15,16 @@ class Search extends Component {
     console.log("Search/userInput", this.state.userInput);
     this.setState({ userInput: value });
     console.log("Search/event.target.value", value);
-    
+    //this.props.searchedTerm(value);
   }
 
   handleSubmit(event) {
     event.preventDefault();
 
-    const { value } = event.target;
-    console.log("Search/event.target.value", value);
+    // const { value } = event.target;
+    // console.log("Search/event.target.value", value);
     this.props.searchedTerm(this.state.userInput);
-    //this.props.searchedTerm(value);
+    
     this.setState({ searchSubmitted: true });
   }
 
