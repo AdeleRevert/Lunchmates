@@ -14,9 +14,9 @@ class RestaurantsList extends Component {
   componentDidMount() {
     const { searchTerm } = this.props;
     console.log("RestoList/searchTerm", searchTerm)
-    axios.get(`http://localhost:5000/api/resto/${searchTerm}`, { withCredentials: true })
+    axios.get(`http://localhost:5000/api/shop/${searchTerm}`, { withCredentials: true })
     .then(response => {
-      console.log("Response data of resto/searchTerm:", response.data);
+      console.log("Response data of shop/searchTerm:", response.data);
     this.setState({ searchResults: response.data.businesses });
     })
     .catch(err => {
@@ -29,9 +29,9 @@ class RestaurantsList extends Component {
   componentWillReceiveProps() {
     const { searchTerm } = this.props;
     console.log("RestoList/searchTerm", searchTerm)
-    axios.get(`http://localhost:5000/api/resto/${searchTerm}`, { withCredentials: true })
+    axios.get(`http://localhost:5000/api/shop/${searchTerm}`, { withCredentials: true })
     .then(response => {
-      console.log("Response data of resto/searchTerm:", response.data);
+      console.log("Response data of shop/searchTerm:", response.data);
     this.setState({ searchResults: response.data.businesses });
     })
     .catch(err => {

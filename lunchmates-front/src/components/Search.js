@@ -14,7 +14,7 @@ class Search extends Component {
   fetchUserInput(event) {
     const { value } = event.target;
     console.log("Search/userInput", this.state.userInput);
-    this.setState({ userInput: value });
+    //this.setState({ userInput: value });
     console.log("Search/event.target.value", value);
     this.props.searchedTerm(value);
   }
@@ -38,11 +38,11 @@ class Search extends Component {
     return (
       <section className="Search">
         <h2>Hey I'm your SearchBar Component</h2>
-        
+
         <form onSubmit={event => this.handleSubmit(event)}>
           <label>
             <input onChange={event => this.fetchUserInput(event)}
-            value={this.state.userInput}
+            value={this.props.userInput}
             type="text" name="userInput" placeholder="Search..." />
             <button>Look for a place!</button>
           </label>

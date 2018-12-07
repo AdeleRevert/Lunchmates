@@ -9,7 +9,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      searchTerm: "japonais",
+      searchTerm: "",
     }
   }
 
@@ -25,7 +25,7 @@ class App extends Component {
 
         <NavBar />
 
-        <Search searchedTerm={term => this.getSearchedTerm(term)}/>
+        <Search userInput={this.state.searchTerm} searchedTerm={term => this.getSearchedTerm(term)}/>
 
         <RestaurantsList searchTerm={this.state.searchTerm}/>
         <footer>
