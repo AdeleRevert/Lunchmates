@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import NavBar from "./NavBar.js";
 import Search from "./Search.js";
 import OneReview from "./OneReview.js";
+import RestaurantPicturePreview from "./RestaurantPicturePreview.js";
 
 class HomePage extends Component {
   constructor(props) {
@@ -24,6 +25,7 @@ class HomePage extends Component {
 
         <div className="bestRatedPlaces">
           <p>here you see the picture of best rated restaurants</p>
+          <RestaurantPicturePreview />
         </div>
 
       </section>
