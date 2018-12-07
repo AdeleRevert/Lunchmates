@@ -20,7 +20,7 @@ class Login extends Component {
     event.preventDefault();
 
     axios
-    .post("http://localhost:5555/login", this.state, {withCredentials: true})
+    .post("http://localhost:3000/login", this.state, {withCredentials: true})
     .then(response => {
       console.log("Login Page", response.data);
       const { userDoc } = response.data;

@@ -22,9 +22,9 @@ class Signup extends Component {
 
   handleSubmitEvent(event){
     event.preventDefault();
-
+    console.log("UNICORN")
     axios
-    .post("http://localhost:5555/signup", this.state, {withCredentials: true })
+    .post("http://localhost:3000/signup", this.state, {withCredentials: true })
     .then(response => {
       console.log("Signup Page", response.data);
       const { userDoc } = response.data;

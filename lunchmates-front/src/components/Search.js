@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 
-
 class Search extends Component {
   constructor(props) {
     super(props);
@@ -14,17 +13,17 @@ class Search extends Component {
   fetchUserInput(event) {
     const { value } = event.target;
     console.log("Search/userInput", this.state.userInput);
-    //this.setState({ userInput: value });
+    this.setState({ userInput: value });
     console.log("Search/event.target.value", value);
-    this.props.searchedTerm(value);
+    //this.props.searchedTerm(value);
   }
 
   handleSubmit(event) {
     event.preventDefault();
 
-    const { value } = event.target;
-    console.log("Search/event.target.value", value);
-    //this.props.searchedTerm(this.state.userInput);
+    // const { value } = event.target;
+    // console.log("Search/event.target.value", value);
+    this.props.searchedTerm(this.state.userInput);
     
     this.setState({ searchSubmitted: true });
   }
@@ -42,7 +41,7 @@ class Search extends Component {
         <form onSubmit={event => this.handleSubmit(event)}>
           <label>
             <input onChange={event => this.fetchUserInput(event)}
-            value={this.props.userInput}
+            value={this.state.userInput}
             type="text" name="userInput" placeholder="Search..." />
             <button>Look for a place!</button>
           </label>
