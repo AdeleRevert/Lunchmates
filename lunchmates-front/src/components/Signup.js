@@ -16,7 +16,7 @@ class Signup extends Component {
   }
 
   genericSync(event){
-    cont { name, value } = event.target;
+    const { name, value } = event.target;
     this.setState({ [name]: value });
   }
 
