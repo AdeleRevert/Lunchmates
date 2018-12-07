@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import RestaurantPicturePreview from "./RestaurantPicturePreview.js";
 import OneReview from "./OneReview.js";
+import { Link } from "react-router-dom";
 
 class UserProfile extends Component {
   constructor(props) {
@@ -18,9 +19,15 @@ class UserProfile extends Component {
             <h3>Company</h3>
             <p>Email</p>
 
-            <input type="checkbox" name="messenger">
-              Enable other users to contact me and have lunch
-            </input>
+            <div>
+              <input type="checkbox" name="messenger">
+                Enable other users to contact me and have lunch
+              </input>
+            </div>
+            {/* Display one or the other depending if you are the current user or not */}
+            <div>
+              <Link to="/">Send A message to have Lunch</Link>
+            </div>
           </div>
         </div>
 
