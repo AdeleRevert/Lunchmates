@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import TimeframeRadioButton from "./TimeFrameRadioButton.js";
 import PriceLevelRadioButton from "./PriceLevelRadioButton.js";
+import AddReviewDietType from "./AddReviewDietType.js";
 
 class AddReview extends Component {
   constructor(props) {
@@ -10,12 +11,13 @@ class AddReview extends Component {
   render() {
     return (
       <div className="AddReview">
-        <p>Rating</p> radio
+        <p>Rating</p>
         <p>What type of cuisine was it?</p>
-        <p>What kind of diet is available?</p>
-        
+
+        <AddReviewDietType />
+
         <PriceLevelRadioButton />
-        
+
         <TimeframeRadioButton />
 
         <input type="text" name="comment" placeholder="Let the world know!" />
