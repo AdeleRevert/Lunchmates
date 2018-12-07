@@ -5,6 +5,7 @@ import { Redirect } from "react-router-dom";
 class Login extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       email: "",
       originalPassword: "",
@@ -20,7 +21,7 @@ class Login extends Component {
     event.preventDefault();
 
     axios
-    .post("http://localhost:3000/login", this.state, {withCredentials: true})
+    .post("http://localhost:5000/api/login", this.state, { withCredentials: true })
     .then(response => {
       console.log("Login Page", response.data);
       const { userDoc } = response.data;
@@ -34,7 +35,7 @@ class Login extends Component {
   
   render() {
     if(this.props.currentUser){
-      return <Redirect to="/hompage" />
+      return <Redirect to="/" />
     }
     return (
       <section className="Login">
@@ -55,10 +56,10 @@ class Login extends Component {
           name="originalPassword" 
           placeholder="*****" 
           />
-
+          <button>Log In</button>
         </form>
 
-        <button>Log In</button>
+        
       </section>
     );
   }

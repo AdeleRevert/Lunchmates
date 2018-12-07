@@ -1,12 +1,31 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import axios from "axios";
 
 class NavBar extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
+
+
+
+  logOutClick() {
+    axios.delete("http://localhost:5000/api/logout", {withCredentials: true })
+      .then(() => {
+        this.props.onLogOut(null);
+      })
+      .catch(err => {
+        console.log("Logout Error", err);
+        alert("Sorry, something went wrong!");
+      });
+  }
+
+
   render() {
+    
+    const { currentUser } = this.props;
+    console.log(currentUser);
     return (
       <section className="NavBar">
         <img
@@ -14,8 +33,19 @@ class NavBar extends Component {
           alt="logo"
         />
         <h1>Great App Name</h1>
-        <Link to="/signup"><button>Sign up</button></Link>
-        <Link to="/login"><button>Log in</button></Link>
+        <nav>
+          {currentUser ? (
+            <div>
+              <p>You are connected {currentUser.firstName}</p>
+              <button onClick={() => this.logOutClick()}>Log out</button>
+            </div>
+          ) : (
+            <div>
+              <NavLink to="/signup-page">Sign up</NavLink>
+              <NavLink to="/signup-page"><button>Log in</button></NavLink>
+            </div>
+        )}
+        </nav>
       </section>
     );
   }

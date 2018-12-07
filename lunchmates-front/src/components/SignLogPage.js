@@ -6,8 +6,10 @@ class SignLogPage extends Component {
   render() { 
     return ( 
       <div className="SignLogPage">
-      <Login />
-      <Signup />
+      <Login currentUser={this.props.currentUser}
+              onUserChange={this.props.onUserChange}/>
+      <Signup currentUser={this.props.currentUser}
+              onUserChange={this.props.onUserChange}/>
       </div>
      );
   }

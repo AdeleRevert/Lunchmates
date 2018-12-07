@@ -14,7 +14,8 @@ class HomePage extends Component {
   render() {
     return (
       <section className="HomePage">
-        <NavBar />
+        <NavBar currentUser={this.props.currentUser}
+                onLogOut={this.props.onLogOut}/>
         <h2>Welcome to your Home Page Beauty</h2>
 
         <div className="HomePageHeader">

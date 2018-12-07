@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import axios from "axios";
 
 class Signup extends Component {
@@ -11,11 +12,10 @@ class Signup extends Component {
       // companyId: "",
       originalPassword: "",
       messenger: false,
-      currentUser: null,
+      currentUser: null, 
     };
   }
 
-  //  
 
   genericSync(event){
     const { name, value } = event.target;
@@ -35,16 +35,21 @@ class Signup extends Component {
     .then(response => {
       console.log("Signup Page", response.data);
       const { userDoc } = response.data;
-     // this.props.onUserChange(userDoc);
+      this.props.onUserChange(userDoc);
     })
     .catch(err => {
-      console.log("SIgnup Page ERROR", err);
-      alert("SOmething went wrong");
+      console.log("Signup Page ERROR", err);
+      alert("Something went wrong");
     });
   }
 
   render() {
     console.log(this.state);
+// check currentUser (received from App.js)
+    if (this.props.currentUser) {
+      return <Redirect to="/" />
+    }
+
     return (
       <section className="Signup">
         <h2>Sign Up</h2>

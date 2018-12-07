@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Provider } from "react";
 import { Switch, Route } from "react-router-dom";
 import axios from "axios";
 
@@ -14,7 +14,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      currentUser: null
+      currentUser: null,
     };
   }
 
@@ -39,48 +39,61 @@ class App extends Component {
   }
 
   // LOGOUT
-  logoutClick() {
-    axios
-      .delete("http://localhost:3000/logout", { withCredentials: true })
-      .then(() => {
-        this.syncCurrentUser(null);
-      })
-      .catch(err => {
-        console.log("Logout ERROR", err);
-        alert("Sorry! Something went wrong");
-      });
-  }
+  // logoutClick() {
+  //   axios
+  //     .delete("http://localhost:5000/logout", { withCredentials: true })
+  //     .then(() => {
+  //       this.syncCurrentUser(null);
+  //     })
+  //     .catch(err => {
+  //       console.log("Logout ERROR", err);
+  //       alert("Sorry! Something went wrong");
+  //     });
+  //}
 
   render() {
     return (
       <div className="App">
 
         <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route path="/shop/:searchTerm" component={RestaurantDetails} />
-          <Route path="/shop-details/:shopId" component={RestaurantDetails} />
-          <Route path="/shop" component={ResearchResultsListPage} />
-          
-          <Route
-            path="/signup"
-            render={() => (
-              <SignLogPage
-                currentUser={this.state.currentUser}
-                onUserChange={userDoc => this.syncCurrentUser(userDoc)}
+          {/* Le Context rend une variable disponible dans tous les arbres existant, sur plusieurs générations */}
+          {/* <Provider value={this.state.currentUser}> */}
+        
+            <Route 
+                exact path="/" 
+                render={() => (
+                  <HomePage 
+                        currentUser={this.state.currentUser}
+                        onLogOut={userDoc => this.syncCurrentUser(userDoc)}
+                  />
+                )}
               />
-            )}
-          />
 
-          <Route
-            path="/login"
-            render={() => (
-              <SignLogPage
-                currentUser={this.state.currentUser}
-                onUserChange={userDoc => this.syncCurrentUser(userDoc)}
-              />
-            )}
-          />
-          <Route component={NotFound} />
+            <Route path="/shop/:searchTerm" component={RestaurantDetails} />
+            <Route path="/shop-details/:shopId" component={RestaurantDetails} />
+            <Route path="/shop" component={ResearchResultsListPage} />
+            
+            <Route
+              path="/signup-page"
+              render={() => (
+                <SignLogPage
+                  currentUser={this.state.currentUser}
+                  onUserChange={userDoc => this.syncCurrentUser(userDoc)}
+                />
+              )}
+            />
+
+            {/* <Route
+              path="/login"
+              render={() => (
+                <SignLogPage
+                  currentUser={this.state.currentUser}
+                  onUserChange={userDoc => this.syncCurrentUser(userDoc)}
+                />
+              )}
+            /> */}
+            <Route component={NotFound} />
+          {/* </Provider> */}
         </Switch>
 
         <footer>
