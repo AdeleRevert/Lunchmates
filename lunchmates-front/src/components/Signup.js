@@ -8,27 +8,34 @@ class Signup extends Component {
       firstName: "",
       lastName: "",
       email: "",
-      companyName: "",
+      // companyId: "",
       originalPassword: "",
       messenger: false,
       currentUser: null,
     };
   }
 
+  //  
+
   genericSync(event){
     const { name, value } = event.target;
     this.setState({ [name]: value });
+  }
+
+  checkboxSync(event) {
+    const { name, checked } = event.target;
+    this.setState({ [name]: checked });
   }
 
   handleSubmitEvent(event){
     event.preventDefault();
     console.log("UNICORN")
     axios
-    .post("http://localhost:3000/signup", this.state, {withCredentials: true })
+    .post("http://localhost:5000/api/signup", this.state, {withCredentials: true })
     .then(response => {
       console.log("Signup Page", response.data);
       const { userDoc } = response.data;
-      this.props.onUserChange(userDoc);
+     // this.props.onUserChange(userDoc);
     })
     .catch(err => {
       console.log("SIgnup Page ERROR", err);
@@ -37,6 +44,7 @@ class Signup extends Component {
   }
 
   render() {
+    console.log(this.state);
     return (
       <section className="Signup">
         <h2>Sign Up</h2>
@@ -75,25 +83,25 @@ class Signup extends Component {
           placeholder="*****" 
           />
 
-          <input 
-          value={this.state.companyName}
+          {/* <input 
+          value={this.state.companyId}
           onChange={event => this.genericSync(event)}
           type="text" 
-          name="companyName" 
+          name="companyId" 
           placeholder="Company Name" 
-          />
+          /> */}
 
           <input 
           value={this.state.messenger}
-          onChange={event => this.genericSync(event)}
+          onChange={event => this.checkboxSync(event)}
           type="checkbox" 
           name="messenger" 
           />
           Do you allow other lunchmates to you you to go to lunch?
         
+        <button>Sign Up</button>
         </form>
 
-        <button>Sign Up</button>
       </section>
     );
   }
