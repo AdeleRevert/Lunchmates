@@ -54,6 +54,7 @@ class RestaurantsList extends Component {
               <li key={oneResult.id}>
                 <h3>{oneResult.name}</h3>
                 <p>{oneResult.location.display_address}</p>
+                <p>rating Yelp: {oneResult.rating}</p>
               </li>
             )
           })}
