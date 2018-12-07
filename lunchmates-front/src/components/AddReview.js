@@ -21,6 +21,8 @@ class AddReview extends Component {
         <TimeframeRadioButton />
 
         <input type="text" name="comment" placeholder="Let the world know!" />
+      
+        <button>Submit</button>
       </div>
     );
   }
