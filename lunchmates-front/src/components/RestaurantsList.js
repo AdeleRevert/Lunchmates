@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 class RestaurantsList extends Component {
@@ -12,9 +13,9 @@ class RestaurantsList extends Component {
   }
 // a modifier par /resto et une search générique par coordonnées de la boite
   componentDidMount() {
-    const { searchTerm } = this.props;
-    console.log("RestoList/searchTerm", searchTerm)
-    axios.get(`http://localhost:5000/api/shop/${searchTerm}`, { withCredentials: true })
+    //const { searchTerm } = this.props;
+    //console.log("RestoList/searchTerm", searchTerm)
+    axios.get(`http://localhost:5000/api/shop/`, { withCredentials: true })
     .then(response => {
       console.log("Response data of shop/searchTerm:", response.data);
     this.setState({ searchResults: response.data.businesses });
@@ -25,9 +26,14 @@ class RestaurantsList extends Component {
     });
   }
 
-// Need to tell it to update every time the searchTerm is updated?
-  componentWillReceiveProps() {
+// Need to tell it to update every time the searchTerm is updated
+  componentDidUpdate(previousProps) {
     const { searchTerm } = this.props;
+    // "PreviousProps" is the object of the props before it was updated so need to look inside it
+    if (searchTerm === previousProps.searchTerm) {
+      return;
+    }
+
     console.log("RestoList/searchTerm", searchTerm)
     axios.get(`http://localhost:5000/api/shop/${searchTerm}`, { withCredentials: true })
     .then(response => {
@@ -52,6 +58,7 @@ class RestaurantsList extends Component {
           {searchResults.map(oneResult => { 
             return (
               <li key={oneResult.id}>
+              {/* <Link to={`/shop/${oneResult.id}`}></Link> */}
                 <h3>{oneResult.name}</h3>
                 <p>{oneResult.location.display_address}</p>
                 <p>rating Yelp: {oneResult.rating}</p>
