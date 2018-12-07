@@ -8,7 +8,17 @@ class OneReview extends Component {
   render() {
     return (
       <section className="OneReview">
-        <h2>Hey I'm One of your Review!</h2>
+        <div className="ReviewerPicture">
+          <img src="user-picture" alt="reviewer" />
+        </div>
+        <div className="ReviewInfo">
+        <h3>User Name</h3>
+        <p>Rating</p>
+        <p>Diet found (we're going to bu cute boxes)</p>
+        <p>Cuisine type (we're going to bu cute boxes)</p>
+        <p>Time frame</p>
+        <p>Comment</p>
+        </div>
       </section>
     );
   }

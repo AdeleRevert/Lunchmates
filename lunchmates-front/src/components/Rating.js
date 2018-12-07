@@ -6,7 +6,9 @@ class Rating extends Component {
     this.state = {  }
   }
   render() { 
-    return (  );
+    return ( 
+      <section>Rating buttons in construction</section>
+     );
   }
 }
  
