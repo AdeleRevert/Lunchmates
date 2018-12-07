@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { Link } from "react-router-dom";
 
 class RestaurantsList extends Component {
   constructor(props) {
@@ -56,7 +55,7 @@ class RestaurantsList extends Component {
           {searchResults.map(oneResult => {
             return (
               <li key={oneResult.id}>
-                <h3><Link to={`/shop/${oneResult.id}`}>{oneResult.name}</Link></h3>
+                <h3><Link to={`/shop-details/${oneResult.id}`}>{oneResult.name}</Link></h3>
                 <p>{oneResult.location.display_address}</p>
                 <p>rating Yelp: {oneResult.rating}</p>
               </li>
