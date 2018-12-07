@@ -8,7 +8,14 @@ class Login extends Component {
   render() {
     return (
       <section className="Login">
-        <h2>Hey I'm your Login Component!</h2>
+        <h2>Log In</h2>
+
+        <form>
+          <input type="email" name="email" placeholder="Email" />
+          <input type="password" name="originalPassword" placeholder="*****" />
+        </form>
+
+        <button>Log In</button>
       </section>
     );
   }
