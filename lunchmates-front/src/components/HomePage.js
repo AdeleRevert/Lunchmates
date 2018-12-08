@@ -4,30 +4,31 @@ import NavBar from "./NavBar.js";
 import HomePageSearch from "./HomePageSearch.js";
 import OneReviewPreview from "./OneReviewPreview.js";
 import RestaurantPicturePreview from "./RestaurantPicturePreview.js";
+import "./HomePage.css";
 
 class HomePage extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-    };
+    this.state = {};
   }
   render() {
     return (
       <section className="HomePage">
-        <NavBar currentUser={this.props.currentUser}
-                onLogOut={this.props.onLogOut}/>
-        <h2>Welcome to your Home Page Beauty</h2>
+        <NavBar
+          currentUser={this.props.currentUser}
+          onLogOut={this.props.onLogOut}
+        />
 
         <div className="HomePageHeader">
           <h2>Find the perfect place to have lunch!</h2>
-          
+
           <HomePageSearch />
 
           <div className="TextUnderSearch">
             <Link to="/">
               <button>+ All filters</button>
             </Link>
-            <div>
+            <div className="TextUnderSearch">
               {/* Only when you're logged-in */}
               <p>Company name</p>
               <p>Company address</p>

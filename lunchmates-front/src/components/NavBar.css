@@ -1,0 +1,44 @@
+.NavBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  background-color: #AAD3C9;
+  height: 5rem;
+  margin: 0;
+}
+
+.logo {
+  height: 80%;
+} 
+
+.logo > img {
+  max-height: 100%;
+}
+
+.NavBar h1 {
+  font-size: 3rem;
+}
+
+.LoggedinUserNav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.LoggedinUserNav > p {
+  margin-right: 1rem;
+}
+
+.NavBar button {
+  border: none;
+  background-color: transparent;
+  font-family: "Roboto Mono", monospace;
+}
+
+.NavBar a {
+  text-decoration: none;
+  color: black;
+}
