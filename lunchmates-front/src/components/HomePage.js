@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import NavBar from "./NavBar.js";
-import Search from "./Search.js";
+import HomePageSearch from "./HomePageSearch.js";
 import OneReviewPreview from "./OneReviewPreview.js";
 import RestaurantPicturePreview from "./RestaurantPicturePreview.js";
 
@@ -21,9 +21,7 @@ class HomePage extends Component {
         <div className="HomePageHeader">
           <h2>Find the perfect place to have lunch!</h2>
           
-          <Search />
-
-          <Link to="/shop"><input placeholder="search" /></Link>
+          <HomePageSearch />
 
           <div className="TextUnderSearch">
             <Link to="/">
