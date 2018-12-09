@@ -28,11 +28,10 @@ class HomePage extends Component {
           <div className="TextUnderSearch">
             {currentUser && (
               <div className="UserCompanyInfo">
-              <p>Company name, Company address</p>
-            </div>            
+                <p>Company name, Company address</p>
+              </div>
             )}
 
-            
             <Link to="/shop" className="FilterLink">
               <button>+ All filters</button>
             </Link>
