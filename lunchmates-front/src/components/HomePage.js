@@ -12,6 +12,7 @@ class HomePage extends Component {
     this.state = {};
   }
   render() {
+    const { currentUser } = this.props;
     return (
       <section className="HomePage">
         <NavBar
@@ -25,10 +26,13 @@ class HomePage extends Component {
           <HomePageSearch />
 
           <div className="TextUnderSearch">
-            <div className="UserCompanyInfo">
-              {/* Only when you're logged-in */}
+            {currentUser && (
+              <div className="UserCompanyInfo">
               <p>Company name, Company address</p>
-            </div>
+            </div>            
+            )}
+
+            
             <Link to="/shop" className="FilterLink">
               <button>+ All filters</button>
             </Link>
@@ -36,10 +40,12 @@ class HomePage extends Component {
         </div>
 
         <div className="LastAddedReviews">
-          {/* if you're not logged-in*/}
-          <h3>Last Added Reviews</h3>
-          {/* if you're logged-in */}
-          <h3>Last Added Reviews by your Workmates</h3>
+          {currentUser ? (
+            <h3>Last Added Reviews by your Workmates</h3>
+          ) : (
+            <h3>Last Added Reviews</h3>
+          )}
+
           <div className="reviewsCaroussel">
             <OneReviewPreview />
             <OneReviewPreview />
@@ -48,8 +54,12 @@ class HomePage extends Component {
         </div>
 
         <div className="bestRatedPlaces">
-          <h3>Best Rated Places</h3> {/* if you're not logged-in */}
-          <h3>Best Rated Places Around You</h3> {/* if you're logged-in */}
+          {currentUser ? (
+            <h3>Best Rated Places Around You</h3>
+          ) : (
+            <h3>Best Rated Places</h3>
+          )}
+
           <RestaurantPicturePreview />
         </div>
       </section>
