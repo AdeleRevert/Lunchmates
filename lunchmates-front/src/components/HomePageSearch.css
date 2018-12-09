@@ -1,0 +1,9 @@
+input {
+  width: 25rem;
+  height: 1.5rem;
+  border-radius: 10px;
+  border: none;
+  padding: 0 20px;
+  font-family: "Roboto Mono", monospace;
+  background-color: rgba(255,255,255, 0.8);;
+}

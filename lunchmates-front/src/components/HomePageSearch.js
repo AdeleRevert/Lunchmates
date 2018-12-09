@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import "./HomePageSearch.css";
 
 class HomePageSearch extends Component {
     constructor(props) {
@@ -13,7 +14,7 @@ class HomePageSearch extends Component {
   
       return (
         <section className="HomePageSearch">
-          <Link to="/shop"><input placeholder="search" /></Link>
+          <Link to="/shop"><input placeholder="What are you looking for?" /></Link>
         </section>
       );
     }

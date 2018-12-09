@@ -1,10 +1,10 @@
 .HomePage {
   margin: 0;
-
 }
 
 .HomePageHeader {
-  background-color: pink;
+  background-image: url("https://images.unsplash.com/photo-1543364195-bfe6e4932397?ixlib=rb-1.2.1&auto=format&fit=crop&w=1001&q=80");
+  background-size: cover;
   height: 25rem;
   width: 100%;
   display: flex;
@@ -14,13 +14,37 @@
 }
 
 h2 {
-  margin: 0;
+  margin: 0 0 40px 0;
 }
 
 .TextUnderSearch {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  margin: 0;
 }
 
+.UserCompanyInfo {
+  margin: 0;
+  padding: 0;
+  font-size: 0.9rem;
+}
+
+.UserCompanyInfo > p {
+  margin: 0;
+}
+
+.FilterLink {
+  margin: 0;
+}
+
+.FilterLink > button {
+  border: none;
+  font-family: "Roboto Mono", monospace;
+  background: transparent;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  font-size: 0.8rem;
+  text-decoration: none;
+}

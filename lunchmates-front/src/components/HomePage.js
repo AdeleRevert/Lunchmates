@@ -25,14 +25,13 @@ class HomePage extends Component {
           <HomePageSearch />
 
           <div className="TextUnderSearch">
-            <Link to="/">
+            <div className="UserCompanyInfo">
+              {/* Only when you're logged-in */}
+              <p>Company name, Company address</p>
+            </div>
+            <Link to="/shop" className="FilterLink">
               <button>+ All filters</button>
             </Link>
-            <div className="TextUnderSearch">
-              {/* Only when you're logged-in */}
-              <p>Company name</p>
-              <p>Company address</p>
-            </div>
           </div>
         </div>
 
