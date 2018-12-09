@@ -1,16 +1,21 @@
-import React, { Component } from 'react';
-
+import React, { Component } from "react";
+import "./OneReviewPreview.css"
 class OneReviewPreview extends Component {
   constructor(props) {
     super(props);
-    this.state = {  }
+    this.state = {};
   }
-  render() { 
-    return ( 
+  render() {
+    return (
       <section className="OneReviewPreview">
-      Hola</section>
-     );
+        <img src="/userpic" alt="user" />
+        <div className="ReviewPreview">
+          <p>Rating</p>
+          <p>Comment</p>
+        </div>
+      </section>
+    );
   }
 }
- 
+
 export default OneReviewPreview;

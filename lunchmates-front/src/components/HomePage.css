@@ -48,3 +48,10 @@ h2 {
   font-size: 0.8rem;
   text-decoration: none;
 }
+
+.reviewsCaroussel {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}

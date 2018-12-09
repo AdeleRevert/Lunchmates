@@ -35,16 +35,21 @@ class HomePage extends Component {
           </div>
         </div>
 
-        <div className="reviewsCaroussel">
-          <h3>Last Added Reviews by your Workmates</h3>
+        <div className="LastAddedReviews">
+          {/* if you're not logged-in*/}
+          <h3>Last Added Reviews</h3>
           {/* if you're logged-in */}
-          <h3>Last Added Reviews</h3> {/* if you're not logged-in*/}
-          <OneReviewPreview />
+          <h3>Last Added Reviews by your Workmates</h3>
+          <div className="reviewsCaroussel">
+            <OneReviewPreview />
+            <OneReviewPreview />
+            <OneReviewPreview />
+          </div>
         </div>
 
         <div className="bestRatedPlaces">
-          <h3>Best Rated Places Around You</h3> {/* if you're logged-in */}
           <h3>Best Rated Places</h3> {/* if you're not logged-in */}
+          <h3>Best Rated Places Around You</h3> {/* if you're logged-in */}
           <RestaurantPicturePreview />
         </div>
       </section>
