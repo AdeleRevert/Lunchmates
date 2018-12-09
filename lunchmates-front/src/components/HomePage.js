@@ -23,7 +23,7 @@ class HomePage extends Component {
         <div className="HomePageHeader">
           <h2>Find the perfect place to have lunch!</h2>
 
-          <HomePageSearch />
+          <HomePageSearch getSearchedTerm={this.props.getSearchedTerm}/>
 
           <div className="TextUnderSearch">
             {currentUser && (

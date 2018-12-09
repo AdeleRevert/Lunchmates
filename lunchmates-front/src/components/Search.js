@@ -10,6 +10,11 @@ class Search extends Component {
     };
   }
 
+  componentDidMount() {
+    const { searchTerm } = this.props;
+    this.setState({ userInput: searchTerm });
+  }
+
   fetchUserInput(event) {
     const { value } = event.target;
     console.log("Search/userInput", this.state.userInput);
@@ -23,7 +28,7 @@ class Search extends Component {
 
     // const { value } = event.target;
     // console.log("Search/event.target.value", value);
-    this.props.searchedTerm(this.state.userInput);
+    this.props.getSearchedTerm(this.state.userInput);
     
     this.setState({ searchSubmitted: true });
   }
@@ -33,6 +38,8 @@ class Search extends Component {
     //   // redirect back t the phone list page if the form submission worked
     //   return <Redirect to="/resto-list" />
     // }
+
+    const { searchTerm } = this.props;
 
     return (
       <section className="Search">

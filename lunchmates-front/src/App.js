@@ -15,6 +15,7 @@ class App extends Component {
 
     this.state = {
       currentUser: null,
+      searchTerm: "",
     };
   }
 
@@ -51,6 +52,13 @@ class App extends Component {
   //     });
   //}
 
+// search Term est nécecssaire dans HomePageSearch component et RestaurantsList component, obligés de le remonter dans App.js
+  getSearchedTerm(term) {
+    console.log(term);
+    this.setState({ searchTerm: term });
+    console.log("App.jsState/searchTerm", this.state.searchTerm);
+  }
+
   render() {
     return (
       <div className="App">
@@ -61,26 +69,31 @@ class App extends Component {
         
             <Route 
                 exact path="/" 
-                render={() => (
+                render={() => 
                   <HomePage 
                         currentUser={this.state.currentUser}
                         onLogOut={userDoc => this.syncCurrentUser(userDoc)}
+                        getSearchedTerm={term => this.getSearchedTerm(term)}
                   />
-                )}
+                }
               />
 
             <Route path="/shop/:searchTerm" component={RestaurantDetails} />
             <Route path="/shop-details/:shopId" component={RestaurantDetails} />
-            <Route path="/shop" component={ResearchResultsListPage} />
+            <Route path="/shop" render={() => 
+                < ResearchResultsListPage searchTerm={this.state.searchTerm} 
+                    getSearchedTerm={term => this.getSearchedTerm(term)} />
+                  } 
+            />
             
             <Route
               path="/signup-page"
-              render={() => (
-                <SignLogPage
+              render={() => 
+                < SignLogPage
                   currentUser={this.state.currentUser}
                   onUserChange={userDoc => this.syncCurrentUser(userDoc)}
                 />
-              )}
+              }
             />
 
             {/* <Route

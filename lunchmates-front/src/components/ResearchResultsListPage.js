@@ -5,9 +5,7 @@ import Search from "./Search.js";
 class ResearchResultsListPage extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      searchTerm: ""
-    };
+    this.state = { };
   }
 
   // SEARCH BAR
@@ -21,11 +19,11 @@ class ResearchResultsListPage extends Component {
     return (
       <section className="ResearchResultsListPage">
         <Search
-          userInput={this.state.searchTerm}
-          searchedTerm={term => this.getSearchedTerm(term)}
+          searchTerm={this.props.searchTerm}
+          getSearchedTerm={this.props.getSearchedTerm}
         />
 
-        <RestaurantsList searchTerm={this.state.searchTerm} />
+        <RestaurantsList searchTerm={this.props.searchTerm} />
       </section>
     );
   }

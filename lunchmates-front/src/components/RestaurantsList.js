@@ -13,9 +13,10 @@ class RestaurantsList extends Component {
   }
   // a modifier par /resto et une search générique par coordonnées de la boite
   componentDidMount() {
+    const { searchTerm } = this.props;
     //const { searchTerm } = this.props;
     //console.log("RestoList/searchTerm", searchTerm)
-    axios.get(`http://localhost:5000/api/shop/`, { withCredentials: true })
+    axios.get(`http://localhost:5000/api/shop/${searchTerm}`, { withCredentials: true })
     .then(response => {
       console.log("Response data of shop/searchTerm:", response.data);
     this.setState({ searchResults: response.data.businesses });
@@ -55,6 +56,7 @@ class RestaurantsList extends Component {
           {searchResults.map(oneResult => {
             return (
               <li key={oneResult.id}>
+                <img src={oneResult.image_url} />
                 <h3><Link to={`/shop-details/${oneResult.id}`}>{oneResult.name}</Link></h3>
                 <p>{oneResult.location.display_address}</p>
                 <p>rating Yelp: {oneResult.rating}</p>
