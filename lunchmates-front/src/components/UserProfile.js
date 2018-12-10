@@ -12,16 +12,16 @@ class UserProfile extends Component {
 
   render() {
     const { currentUser } = this.props;
-console.log(currentUser)
+console.log("UserProfile", currentUser)
     return (
       <section className="UserProfile">
         <div className="UserProfileHeader">
           <img src="avatar" alt="user" />
 
           <div className="UserInfo">
-            <h2>Name {currentUser.firstName} </h2>
+            <h2>Name </h2>
             <h3>Company </h3>
-            <p>Email {currentUser.email}</p>
+            <p>Email</p>
 
             <div>
               <input type="checkbox" name="messenger"/>
@@ -37,7 +37,7 @@ console.log(currentUser)
 
         <div className="FavoritePlaces">
           <h2>My favorite places</h2>
-          <RestaurantPicturePreview currentUser={this.props.currentUser.favorites}/>
+          <RestaurantPicturePreview currentUser={this.props.currentUser}/>
         </div>
 
         <div className="MyLastReviews">

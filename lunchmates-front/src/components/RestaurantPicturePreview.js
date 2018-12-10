@@ -3,6 +3,16 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import "./RestaurantPicturePreview.css";
 
+function getShopUrl(oneResult) {
+  if (oneResult.yelpId) {
+    return `/shop-details/${oneResult.yelpId}`;
+  } else {
+    console.log("oneResult.yelpId", oneResult.yelpId);
+    return `/shop-details/${oneResult.id}`;
+  }
+}
+
+
 class RestaurantPicturePreview extends Component {
   constructor(props) {
     super(props);
@@ -11,11 +21,21 @@ class RestaurantPicturePreview extends Component {
     };
   }
 
-  componentDidMount() {
+  componentDidMount() { 
+    console.log("RestaurantPicturePreview", this.props.currentUser);
     if (this.props.currentUser) {
       console.log(this.props.currentUser)
-      // this.setState({searchResults: this.props.currentUser.favorites});
-    } 
+      axios.get(`http://localhost:5000/api/user-favorites`, { withCredentials: true })
+        .then(response => {
+          //console.log("/user-favorites", response.data);
+          this.setState({searchResults: response.data.favorites});
+        })
+        .catch(err => {
+          console.log("Display Favorite Resto FAILED", err);
+          alert("Something went wrong with the display of your fav resto, sorry");
+        });
+      
+    } else {
 
     axios
       .get(`http://localhost:5000/api/shop/`, { withCredentials: true })
@@ -29,27 +49,31 @@ class RestaurantPicturePreview extends Component {
         console.log("Search page ERROR", err);
         alert("Something went wrong with the search, sorray");
       });
+    }
   }
+
+
 
   render() {
     const { searchResults } = this.state;
+    console.log("SearchResults", searchResults);
 
     return (
       <section className="RestaurantPicturePreview">
         <ul className="ListofRestaurantPicturePreview">
           {searchResults.map(oneResult => {
             return (
-              <li key={oneResult.id} className="OneRestaurantPicturePreview">
-                <Link to={`/shop-details/${oneResult.id}`}>
+              <li key={oneResult.alias} className="OneRestaurantPicturePreview">
+                {/* <Link to={oneResult => this.getShopUrl(oneResult)}> */}
                   <img src={oneResult.image_url} alt="restaurant" />
-                </Link>
-                <Link to={`/shop-details/${oneResult.id}`}>
+                {/* </Link> */}
+                <Link to={getShopUrl(oneResult)}>
                   <div className="RestaurantInfoOverlay">
                     <p>{oneResult.name}</p>
-                    <p>
+                    {/* <p>
                       {oneResult.location.address1}{" "}
                       {oneResult.location.zip_code} {oneResult.location.city}
-                    </p>
+                    </p> */}
                     <p>{oneResult.rating}</p>
                   </div>
                 </Link>
