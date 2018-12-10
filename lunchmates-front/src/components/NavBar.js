@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import axios from "axios";
 import "./NavBar.css";
 
+
 class NavBar extends Component {
   constructor(props) {
     super(props);
@@ -36,7 +37,7 @@ class NavBar extends Component {
         <nav>
           {currentUser ? (
             <div className="LoggedinUserNav">
-              <p>Hi, {currentUser.firstName}</p>
+              <p><NavLink to="/profile">Hi, {currentUser.firstName}</NavLink></p>
               <button onClick={() => this.logOutClick()}>Log out</button>
             </div>
           ) : (

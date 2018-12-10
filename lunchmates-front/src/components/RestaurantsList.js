@@ -18,7 +18,7 @@ class RestaurantsList extends Component {
     //console.log("RestoList/searchTerm", searchTerm)
     axios.get(`http://localhost:5000/api/shop/${searchTerm}`, { withCredentials: true })
     .then(response => {
-      console.log("Response data of shop/searchTerm:", response.data);
+      //console.log("Response data of shop/searchTerm:", response.data);
     this.setState({ searchResults: response.data.businesses });
     })
     .catch(err => {
@@ -35,10 +35,10 @@ class RestaurantsList extends Component {
       return;
     }
 
-    console.log("RestoList/searchTerm", searchTerm)
+    //("RestoList/searchTerm", searchTerm)
     axios.get(`http://localhost:5000/api/shop/${searchTerm}`, { withCredentials: true })
     .then(response => {
-      console.log("Response data of shop/searchTerm:", response.data);
+      //console.log("Response data of shop/searchTerm:", response.data);
     this.setState({ searchResults: response.data.businesses });
     })
     .catch(err => {
@@ -60,6 +60,7 @@ class RestaurantsList extends Component {
                 <h3><Link to={`/shop-details/${oneResult.id}`}>{oneResult.name}</Link></h3>
                 <p>{oneResult.location.display_address}</p>
                 <p>rating Yelp: {oneResult.rating}</p>
+                <button>+ Add to your favorites</button>
               </li>
             );
           })}

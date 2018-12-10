@@ -23,7 +23,7 @@ class Login extends Component {
     axios
     .post("http://localhost:5000/api/login", this.state, { withCredentials: true })
     .then(response => {
-      console.log("Login Page", response.data);
+      //console.log("Login Page", response.data);
       const { userDoc } = response.data;
       this.props.onUserChange(userDoc);
     })

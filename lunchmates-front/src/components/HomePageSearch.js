@@ -14,9 +14,9 @@ class HomePageSearch extends Component {
   
     fetchUserInput(event) {
       const { value } = event.target;
-      console.log("Search/userInput", this.state.userInput);
+      //console.log("Search/userInput", this.state.userInput);
       this.setState({ userInput: value });
-      console.log("Search/event.target.value", value);
+      //console.log("Search/event.target.value", value);
       //this.props.searchedTerm(value);
     }
 
@@ -33,7 +33,7 @@ class HomePageSearch extends Component {
     render() {
 
       if (this.state.searchSubmitted) {
-        console.log("redirect, bitch")
+        //console.log("redirect, bitch")
         // redirect back t the shop list page if the form submission worked hoping that the input will be trasnferred there^^
         return <Redirect to="/shop" />
       }

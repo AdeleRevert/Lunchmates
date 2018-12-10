@@ -8,6 +8,8 @@ import NotFound from "./components/NotFound.js";
 import SignLogPage from "./components/SignLogPage.js";
 import ResearchResultsListPage from "./components/ResearchResultsListPage";
 import RestaurantDetails from "./components/RestaurantDetails.js";
+import NavBar from "./components/NavBar.js";
+import UserProfile from "./components/UserProfile.js";
 
 class App extends Component {
   constructor(props) {
@@ -24,7 +26,7 @@ class App extends Component {
     axios
       .get("http://localhost:5000/api/checkuser", { withCredentials: true })
       .then(response => {
-        console.log("Check user", response.data);
+        //console.log("Check user", response.data);
         const { userDoc } = response.data;
         this.syncCurrentUser(userDoc);
       })
@@ -41,14 +43,20 @@ class App extends Component {
 
 // search Term est nécecssaire dans HomePageSearch component et RestaurantsList component, obligés de le remonter dans App.js
   getSearchedTerm(term) {
-    console.log(term);
+    //console.log(term);
     this.setState({ searchTerm: term });
-    console.log("App.jsState/searchTerm", this.state.searchTerm);
+    //console.log("App.jsState/searchTerm", this.state.searchTerm);
   }
 
   render() {
+    
+    console.log(this.state.currentUser);
     return (
       <div className="App">
+          <NavBar
+          currentUser={this.state.currentUser}
+          onLogOut={userDoc => this.syncCurrentUser(userDoc)}
+        />
 
         <Switch>
           {/* Le Context rend une variable disponible dans tous les arbres existant, sur plusieurs générations */}
@@ -81,6 +89,12 @@ class App extends Component {
                   onUserChange={userDoc => this.syncCurrentUser(userDoc)}
                 />
               }
+            />
+            <Route path="/profile" 
+                  render={() => 
+                  <UserProfile 
+                  currentUser={this.state.currentUser}/>
+                  } 
             />
 
             {/* <Route

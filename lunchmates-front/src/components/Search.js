@@ -17,9 +17,9 @@ class Search extends Component {
 
   fetchUserInput(event) {
     const { value } = event.target;
-    console.log("Search/userInput", this.state.userInput);
+    //console.log("Search/userInput", this.state.userInput);
     this.setState({ userInput: value });
-    console.log("Search/event.target.value", value);
+    //console.log("Search/event.target.value", value);
     //this.props.searchedTerm(value);
   }
 

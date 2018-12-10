@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import AddReview from "./AddReview";
 import OneReview from "./OneReview.js";
+import NavBar from "./NavBar.js";
 
 import axios from "axios";
 
@@ -9,15 +10,17 @@ import "./RestaurantDetails.css";
 class RestaurantDetails extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      shopFavored: false,
+    };
   }
 
   componentDidMount() {
     const { params } = this.props.match;
-    console.log("params", params);
+    //console.log("params", params);
     axios.get(`http://localhost:5000/api/shop-details/${params.shopId}`, { withCredentials: true })
     .then(response => {
-      console.log("Response data of single restaurant", response.data)
+      //console.log("Response data of single restaurant", response.data)
       this.setState(response.data);
     })
     .catch(err => {
@@ -26,10 +29,25 @@ class RestaurantDetails extends Component {
     });
   }
 
+  addShopToFav() {
+    console.log("coucou")
+    const { params } = this.props.match;
+    axios.put(`http://localhost:5000/api/add-shop/${params.shopId}`, {}, { withCredentials: true })
+    .then(response => {
+      console.log("Response data of adding a resto to fav", response.data);
+      this.setState({ shopFavored: true })
+    })
+    .catch(err => {
+      console.log("Add-Shop ERROR", err);
+      alert("Something went wrong with adding the shop to your favorites, sorry!");
+    });
+  }
+
   render() {
     const { name, rating, location, display_phone, price, image_url } = this.state;
     return (
       <section className="RestaurantDetails">
+      {/* <NavBar /> */}
         <h2>Hey I'm your Restaurant Details Component!</h2>
         <div className="RestaurantDetailsHeader">
           <img src={image_url} alt={name} />
@@ -42,6 +60,12 @@ class RestaurantDetails extends Component {
             <p>Type of cuisine</p>
             <p>Diets available</p>
             <p>{price}</p>
+            
+            {this.state.shopFavored ? 
+            <p>Added to your list of favorites!</p> 
+            : 
+            <button onClick={() => this.addShopToFav()}>+ Add to your favorites</button>}
+            
           </div>
         </div>
 

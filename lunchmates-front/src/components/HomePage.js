@@ -13,12 +13,13 @@ class HomePage extends Component {
   }
   render() {
     const { currentUser } = this.props;
+    console.log(currentUser);
     return (
       <section className="HomePage">
-        <NavBar
+        {/* <NavBar
           currentUser={this.props.currentUser}
           onLogOut={this.props.onLogOut}
-        />
+        /> */}
 
         <div className="HomePageHeader">
           <h2>Find the perfect place to have lunch!</h2>

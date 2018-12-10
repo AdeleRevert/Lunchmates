@@ -11,15 +11,15 @@ class ResearchResultsListPage extends Component {
 
   // SEARCH BAR
   getSearchedTerm(term) {
-    console.log(term);
+    //console.log(term);
     this.setState({ searchTerm: term });
-    console.log("App.jsState/searchTerm", this.state.searchTerm);
+    //console.log("App.jsState/searchTerm", this.state.searchTerm);
   }
 
   render() {
     return (
       <section className="ResearchResultsListPage">
-      <NavBar />
+      {/* <NavBar /> */}
         <Search
           searchTerm={this.props.searchTerm}
           getSearchedTerm={this.props.getSearchedTerm}

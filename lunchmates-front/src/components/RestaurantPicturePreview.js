@@ -12,10 +12,17 @@ class RestaurantPicturePreview extends Component {
   }
 
   componentDidMount() {
+    if (this.props.currentUser) {
+      console.log(this.props.currentUser)
+      // this.setState({searchResults: this.props.currentUser.favorites});
+    } 
+
     axios
       .get(`http://localhost:5000/api/shop/`, { withCredentials: true })
       .then(response => {
-        console.log("Response data of shop/searchTerm:", response.data);
+        //console.log("Response data of shop/searchTerm:", response.data);
+        const tempArray = response.data.businesses.splice(3, 1);
+        tempArray.slice(0,4);
         this.setState({ searchResults: response.data.businesses });
       })
       .catch(err => {
@@ -26,8 +33,7 @@ class RestaurantPicturePreview extends Component {
 
   render() {
     const { searchResults } = this.state;
-    searchResults.splice(3, 1);
-    searchResults.splice(4);
+
     return (
       <section className="RestaurantPicturePreview">
         <ul className="ListofRestaurantPicturePreview">

@@ -31,13 +31,13 @@ class Signup extends Component {
 
   handleSubmitEvent(event) {
     event.preventDefault();
-    console.log("SUBMIT THIS STATE", this.state)
+    //console.log("SUBMIT THIS STATE", this.state)
     axios
       .post("http://localhost:5000/api/signup", this.state, {
         withCredentials: true
       })
       .then(response => {
-        console.log("Signup Page", response.data);
+        //console.log("Signup Page", response.data);
         const { userDoc } = response.data;
         this.props.onUserChange(userDoc);
       })
@@ -55,7 +55,7 @@ class Signup extends Component {
       })
       .then(response => {
         const companiesArray = response.data;
-        console.log("XXX", companiesArray);
+        //console.log("XXX", companiesArray);
         this.setState({ companiesArray });
       })
 
@@ -66,7 +66,7 @@ class Signup extends Component {
   }
 
   render() {
-    console.log(this.state);
+    //console.log(this.state);
     // check currentUser (received from App.js)
     if (this.props.currentUser) {
       return <Redirect to="/" />;
@@ -74,7 +74,7 @@ class Signup extends Component {
 
     // comment récupérer l'array ?
     const { companiesArray } = this.state;
-    console.log(companiesArray);
+    //console.log(companiesArray);
 
     return (
       <section className="Signup">
