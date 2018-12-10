@@ -15,7 +15,6 @@ class Signup extends Component {
       messenger: false,
       currentUser: null,
       companiesArray: [],
-      selectedCompany: "",
       validationError: "" // prevent the user from selecting the blank company in the dropdown
     };
   }
@@ -32,6 +31,7 @@ class Signup extends Component {
 
   handleSubmitEvent(event) {
     event.preventDefault();
+    console.log("SUBMIT THIS STATE", this.state)
     axios
       .post("http://localhost:5000/api/signup", this.state, {
         withCredentials: true
@@ -114,10 +114,9 @@ class Signup extends Component {
             Please, select your company:
             {/* this way? */}
             <select
-              value={this.state.selectedCompany}
-              onChange={event =>
-                this.setState({
-                  selectedCompany: event.target.value,
+              value={this.state.companyId}
+              onChange={event => this.setState({
+                  companyId: event.target.value,
                   validationError:
                     event.target.value === ""
                       ? "You must select your company"
@@ -126,7 +125,7 @@ class Signup extends Component {
               }
             >
               {this.state.companiesArray.map(oneCompany => (
-                <option key={oneCompany.value} value={oneCompany.value}>
+                <option key={oneCompany._id} value={oneCompany._id}>
                   {oneCompany.name}, {oneCompany.subOffice}
                 </option>
               ))}

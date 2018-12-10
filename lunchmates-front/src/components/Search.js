@@ -43,8 +43,6 @@ class Search extends Component {
 
     return (
       <section className="Search">
-        <h2>Hey I'm your SearchBar Component</h2>
-
         <form onSubmit={event => this.handleSubmit(event)}>
           <label>
             <input onChange={event => this.fetchUserInput(event)}

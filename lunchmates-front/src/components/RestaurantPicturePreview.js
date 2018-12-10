@@ -26,6 +26,7 @@ class RestaurantPicturePreview extends Component {
 
   render() {
     const { searchResults } = this.state;
+    searchResults.splice(3, 1);
     searchResults.splice(4);
     return (
       <section className="RestaurantPicturePreview">
@@ -33,12 +34,19 @@ class RestaurantPicturePreview extends Component {
           {searchResults.map(oneResult => {
             return (
               <li key={oneResult.id} className="OneRestaurantPicturePreview">
-                <Link to={`/shop-details/${oneResult.id}`}><img src={oneResult.image_url} alt="restaurant"/></Link>
-                <div className="RestaurantInfoOverlay">
-                <p>{oneResult.name}</p>
-                <p>{oneResult.location.address1} {oneResult.location.zip_code} {oneResult.location.city}</p>
-                <p>{oneResult.rating}</p>
-                </div>
+                <Link to={`/shop-details/${oneResult.id}`}>
+                  <img src={oneResult.image_url} alt="restaurant" />
+                </Link>
+                <Link to={`/shop-details/${oneResult.id}`}>
+                  <div className="RestaurantInfoOverlay">
+                    <p>{oneResult.name}</p>
+                    <p>
+                      {oneResult.location.address1}{" "}
+                      {oneResult.location.zip_code} {oneResult.location.city}
+                    </p>
+                    <p>{oneResult.rating}</p>
+                  </div>
+                </Link>
               </li>
             );
           })}

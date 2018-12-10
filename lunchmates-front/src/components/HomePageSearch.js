@@ -40,8 +40,6 @@ class HomePageSearch extends Component {
 
       return (
         <section className="HomePageSearch">
-        <h2>Hey I'm your HomePageSearchBar Component</h2>
-
         <form onSubmit={event => this.handleSubmit(event)}>
           <label>
             <input onChange={event => this.fetchUserInput(event)}

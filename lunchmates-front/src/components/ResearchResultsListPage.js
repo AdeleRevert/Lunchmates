@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import RestaurantsList from "./RestaurantsList.js";
 import Search from "./Search.js";
+import NavBar from "./NavBar.js";
 
 class ResearchResultsListPage extends Component {
   constructor(props) {
@@ -18,6 +19,7 @@ class ResearchResultsListPage extends Component {
   render() {
     return (
       <section className="ResearchResultsListPage">
+      <NavBar />
         <Search
           searchTerm={this.props.searchTerm}
           getSearchedTerm={this.props.getSearchedTerm}

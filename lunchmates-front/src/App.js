@@ -39,19 +39,6 @@ class App extends Component {
     this.setState({ currentUser: userDoc });
   }
 
-  // LOGOUT
-  // logoutClick() {
-  //   axios
-  //     .delete("http://localhost:5000/logout", { withCredentials: true })
-  //     .then(() => {
-  //       this.syncCurrentUser(null);
-  //     })
-  //     .catch(err => {
-  //       console.log("Logout ERROR", err);
-  //       alert("Sorry! Something went wrong");
-  //     });
-  //}
-
 // search Term est nécecssaire dans HomePageSearch component et RestaurantsList component, obligés de le remonter dans App.js
   getSearchedTerm(term) {
     console.log(term);
