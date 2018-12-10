@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
 import "./SignLogPage.css";
+import AddCompany from "./AddCompany.js";
 
 class Signup extends Component {
   constructor(props) {
@@ -15,7 +16,11 @@ class Signup extends Component {
       messenger: false,
       currentUser: null,
       companiesArray: [],
-      validationError: "" // prevent the user from selecting the blank company in the dropdown
+      validationError: "", // prevent the user from selecting the blank company in the dropdown
+      isAddingCompany: false,
+      // address: "",
+      // companyAdress: "",
+      // companyCoordinates: [],
     };
   }
 
@@ -31,7 +36,7 @@ class Signup extends Component {
 
   handleSubmitEvent(event) {
     event.preventDefault();
-    console.log("SUBMIT THIS STATE", this.state)
+    console.log("SUBMIT THIS STATE", this.state);
     axios
       .post("http://localhost:5000/api/signup", this.state, {
         withCredentials: true
@@ -72,7 +77,6 @@ class Signup extends Component {
       return <Redirect to="/" />;
     }
 
-    // comment récupérer l'array ?
     const { companiesArray } = this.state;
     console.log(companiesArray);
 
@@ -115,7 +119,8 @@ class Signup extends Component {
             {/* this way? */}
             <select
               value={this.state.companyId}
-              onChange={event => this.setState({
+              onChange={event =>
+                this.setState({
                   companyId: event.target.value,
                   validationError:
                     event.target.value === ""
@@ -134,16 +139,6 @@ class Signup extends Component {
             <div>{this.state.validationError}</div>
           </label>
           {/* input to create your company if not on the previous list */}
-          {/* <label>
-            If your company doesn't appear in the list, please add it:
-          </label>
-          <input
-            value={this.state.companyId}
-            onChange={event => this.genericSync(event)}
-            type="text"
-            name="companyId"
-            placeholder="Company Name"
-          /> */}
           Do you allow other lunchmates to you you to go to lunch?
           <input
             value={this.state.messenger}
@@ -155,10 +150,23 @@ class Signup extends Component {
           {/* Please, chose your avatar:
           <input type="file" /> */}
           <button>Sign Up</button>
+          
         </form>
-      </section>
-    );
-  }
+
+                  <label>
+            If your company doesn't appear in the list, please
+            <button onClick={() => this.setState({ isAddingCompany: true })}>
+              add it
+            </button> 
+          </label>
+          {this.state.isAddingCompany && ( 
+          <AddCompany />
+          )}
+
+    </section>
+  );
 }
+}          
+
 
 export default Signup;
