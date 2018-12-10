@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
 import "./SignLogPage.css";
+import AddCompany from "./AddCompany.js";
 
 class Signup extends Component {
   constructor(props) {
@@ -15,7 +16,10 @@ class Signup extends Component {
       messenger: false,
       currentUser: null,
       companiesArray: [],
-      validationError: "" // prevent the user from selecting the blank company in the dropdown
+      mesCouillesEnSki: [],
+      validationError: "", // prevent the user from selecting the blank company in the dropdown
+      isAddingCompany: false,
+      companyDoc: "",
     };
   }
 
@@ -54,9 +58,9 @@ class Signup extends Component {
         withCredentials: true
       })
       .then(response => {
-        const companiesArray = response.data;
-        //console.log("XXX", companiesArray);
-        this.setState({ companiesArray });
+        const mesCouillesEnSki = response.data;
+        //console.log("XXX", mesCouillesEnSki);
+        this.setState({ mesCouillesEnSki });
       })
 
       .catch(err => {
@@ -65,6 +69,13 @@ class Signup extends Component {
       });
   }
 
+  onUserChange(companyDoc){
+    const { companiesArray } = this.state;
+    const mesCouillesEnSki = companiesArray.push(companyDoc);
+    companiesArray.setState({ companiesArray: mesCouillesEnSki });
+  }
+
+
   render() {
     //console.log(this.state);
     // check currentUser (received from App.js)
@@ -72,9 +83,8 @@ class Signup extends Component {
       return <Redirect to="/" />;
     }
 
-    // comment récupérer l'array ?
-    const { companiesArray } = this.state;
-    //console.log(companiesArray);
+    const { mesCouillesEnSki } = this.state;
+    //console.log(mesCouillesEnSki);
 
     return (
       <section className="Signup">
@@ -115,7 +125,8 @@ class Signup extends Component {
             {/* this way? */}
             <select
               value={this.state.companyId}
-              onChange={event => this.setState({
+              onChange={event =>
+                this.setState({
                   companyId: event.target.value,
                   validationError:
                     event.target.value === ""
@@ -124,7 +135,7 @@ class Signup extends Component {
                 })
               }
             >
-              {this.state.companiesArray.map(oneCompany => (
+              {this.state.mesCouillesEnSki.map(oneCompany => (
                 <option key={oneCompany._id} value={oneCompany._id}>
                   {oneCompany.name}, {oneCompany.subOffice}
                 </option>
@@ -134,16 +145,6 @@ class Signup extends Component {
             <div>{this.state.validationError}</div>
           </label>
           {/* input to create your company if not on the previous list */}
-          {/* <label>
-            If your company doesn't appear in the list, please add it:
-          </label>
-          <input
-            value={this.state.companyId}
-            onChange={event => this.genericSync(event)}
-            type="text"
-            name="companyId"
-            placeholder="Company Name"
-          /> */}
           Do you allow other lunchmates to you you to go to lunch?
           <input
             value={this.state.messenger}
@@ -155,10 +156,23 @@ class Signup extends Component {
           {/* Please, chose your avatar:
           <input type="file" /> */}
           <button>Sign Up</button>
+          
         </form>
-      </section>
-    );
-  }
+
+                  <label>
+            If your company doesn't appear in the list, please
+            <button onClick={() => this.setState({ isAddingCompany: true })}>
+              add it
+            </button> 
+          </label>
+          {this.state.isAddingCompany && ( 
+          <AddCompany onUserChange={companyDoc => this.onUserChange(companyDoc)} />
+          )}
+
+    </section>
+  );
 }
+}          
+
 
 export default Signup;
