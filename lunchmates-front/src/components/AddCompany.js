@@ -27,8 +27,8 @@ class AddCompany extends React.Component {
       })
       .then(response => {
         console.log("Add company form ", response.data);
-        //const { companyDoc } = response.data;
-        //this.props.onUserChange(companyDoc);
+        const { companyDoc } = response.data;
+        this.props.onUserChange(companyDoc);
       })
       .catch(err => {
         console.log("Add company form ERROR", err);

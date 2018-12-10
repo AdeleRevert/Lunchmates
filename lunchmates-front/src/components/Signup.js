@@ -16,11 +16,10 @@ class Signup extends Component {
       messenger: false,
       currentUser: null,
       companiesArray: [],
+      mesCouillesEnSki: [],
       validationError: "", // prevent the user from selecting the blank company in the dropdown
       isAddingCompany: false,
-      // address: "",
-      // companyAdress: "",
-      // companyCoordinates: [],
+      companyDoc: "",
     };
   }
 
@@ -59,9 +58,9 @@ class Signup extends Component {
         withCredentials: true
       })
       .then(response => {
-        const companiesArray = response.data;
-        console.log("XXX", companiesArray);
-        this.setState({ companiesArray });
+        const mesCouillesEnSki = response.data;
+        console.log("XXX", mesCouillesEnSki);
+        this.setState({ mesCouillesEnSki });
       })
 
       .catch(err => {
@@ -70,6 +69,13 @@ class Signup extends Component {
       });
   }
 
+  onUserChange(companyDoc){
+    const { companiesArray } = this.state;
+    const mesCouillesEnSki = companiesArray.push(companyDoc);
+    companiesArray.setState({ companiesArray: mesCouillesEnSki });
+  }
+
+
   render() {
     console.log(this.state);
     // check currentUser (received from App.js)
@@ -77,8 +83,8 @@ class Signup extends Component {
       return <Redirect to="/" />;
     }
 
-    const { companiesArray } = this.state;
-    console.log(companiesArray);
+    const { mesCouillesEnSki } = this.state;
+    console.log(mesCouillesEnSki);
 
     return (
       <section className="Signup">
@@ -129,7 +135,7 @@ class Signup extends Component {
                 })
               }
             >
-              {this.state.companiesArray.map(oneCompany => (
+              {this.state.mesCouillesEnSki.map(oneCompany => (
                 <option key={oneCompany._id} value={oneCompany._id}>
                   {oneCompany.name}, {oneCompany.subOffice}
                 </option>
@@ -160,7 +166,7 @@ class Signup extends Component {
             </button> 
           </label>
           {this.state.isAddingCompany && ( 
-          <AddCompany />
+          <AddCompany onUserChange={companyDoc => this.onUserChange(companyDoc)} />
           )}
 
     </section>
