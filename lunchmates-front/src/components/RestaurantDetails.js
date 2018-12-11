@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import AddReview from "./AddReview";
 import OneReview from "./OneReview.js";
-import NavBar from "./NavBar.js";
 
 import axios from "axios";
 
@@ -47,7 +46,6 @@ class RestaurantDetails extends Component {
     const { name, rating, location, display_phone, price, image_url } = this.state;
     return (
       <section className="RestaurantDetails">
-      {/* <NavBar /> */}
         <h2>Hey I'm your Restaurant Details Component!</h2>
         <div className="RestaurantDetailsHeader">
           <img src={image_url} alt={name} />

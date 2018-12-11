@@ -39,7 +39,7 @@ class Search extends Component {
     //   return <Redirect to="/resto-list" />
     // }
 
-    const { searchTerm } = this.props;
+    //const { searchTerm } = this.props;
 
     return (
       <section className="Search">

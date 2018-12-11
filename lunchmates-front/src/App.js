@@ -1,4 +1,4 @@
-import React, { Component, Provider } from "react";
+import React, { Component } from "react";
 import { Switch, Route } from "react-router-dom";
 import axios from "axios";
 
