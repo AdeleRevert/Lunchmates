@@ -4,15 +4,41 @@ import HomePageSearch from "./HomePageSearch.js";
 import OneReviewPreview from "./OneReviewPreview.js";
 import RestaurantPicturePreview from "./RestaurantPicturePreview.js";
 import "./HomePage.css";
+import axios from "axios";
 
 class HomePage extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      companyName: "",
+      companyAddress: "",
+    };
   }
+
+  componentDidMount() {
+    axios
+    .get("http://localhost:5000/api/user-company", { withCredentials: true })
+    .then(response => {
+      console.log("response.data", response.data)
+      const { addressCoordinates } = response.data;
+      const name = response.data.name;
+      console.log("company name", name)
+      console.log("company address", addressCoordinates.string)
+      this.setState({ companyName: name, companyAddress: addressCoordinates.string})
+    })
+    .catch(err => {
+      console.log("user company info", err);
+      alert("Sorry! Something went wrong.")
+    })
+  }
+
   render() {
     const { currentUser } = this.props;
     console.log(currentUser);
+    const { companyName } = this.state;
+    console.log("HEYAAAAAAA", companyName);
+    const {companyAddress} = this.state;
+    console.log("HOAAAAA", companyAddress);
     return (
       <section className="HomePage">
 
@@ -24,7 +50,7 @@ class HomePage extends Component {
           <div className="TextUnderSearch">
             {currentUser && (
               <div className="UserCompanyInfo">
-                <p>Company name, Company address</p>
+                <p>{ companyName }, { companyAddress }</p>
               </div>
             )}
 
