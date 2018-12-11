@@ -15,12 +15,16 @@ class RestaurantDetails extends Component {
   }
 
   componentDidMount() {
+   
     const { params } = this.props.match;
     //console.log("params", params);
     axios.get(`http://localhost:5000/api/shop-details/${params.shopId}`, { withCredentials: true })
     .then(response => {
-      //console.log("Response data of single restaurant", response.data)
-      this.setState(response.data);
+      console.log("Response data of single restaurant", response.data);
+      if (response.data.user.favorites.includes(params.shopId)) {
+        this.setState({shopFavored: true});
+      }
+      this.setState(response.data.shop);
     })
     .catch(err => {
       console.log("Shop Details ERROR", err);
@@ -33,7 +37,9 @@ class RestaurantDetails extends Component {
     const { params } = this.props.match;
     axios.put(`http://localhost:5000/api/add-shop/${params.shopId}`, {}, { withCredentials: true })
     .then(response => {
+     
       console.log("Response data of adding a resto to fav", response.data);
+      
       this.setState({ shopFavored: true })
     })
     .catch(err => {

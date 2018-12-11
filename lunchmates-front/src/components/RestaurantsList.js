@@ -2,11 +2,14 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
+
+
 class RestaurantsList extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      shopFavored: false,
       // empty array that will receive the result once filtered
       searchResults: []
     };
@@ -47,6 +50,21 @@ class RestaurantsList extends Component {
     });
   }
 
+   addShopToFav(oneResult) {
+    console.log(oneResult);
+    const id = oneResult.id;
+    console.log("id", id);
+    return axios.put(`http://localhost:5000/api/add-shop/${id}`, {}, { withCredentials: true })
+    .then(response => {
+      console.log("Response data of adding a resto to fav", response.data);
+      //this.setState({ shopFavored: true })
+    })
+    .catch(err => {
+      console.log("Add-Shop ERROR", err);
+      alert("Something went wrong with adding the shop to your favorites, sorry!");
+    });
+  }
+
   render() {
     const { searchResults } = this.state;
 
@@ -60,7 +78,7 @@ class RestaurantsList extends Component {
                 <h3><Link to={`/shop-details/${oneResult.id}`}>{oneResult.name}</Link></h3>
                 <p>{oneResult.location.display_address}</p>
                 <p>rating Yelp: {oneResult.rating}</p>
-                <button>+ Add to your favorites</button>
+                <button onClick={() => this.addShopToFav(oneResult)}>+ Add to your favorites</button>
               </li>
             );
           })}
