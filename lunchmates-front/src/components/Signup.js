@@ -127,12 +127,7 @@ class Signup extends Component {
               value={this.state.companyId}
               onChange={event =>
                 this.setState({
-                  companyId: event.target.value,
-                  validationError:
-                    event.target.value === ""
-                      ? "You must select your company"
-                      : ""
-                })
+                  companyId: event.target.value})
               }
             >
               {this.state.mesCouillesEnSki.map(oneCompany => (
@@ -141,8 +136,7 @@ class Signup extends Component {
                 </option>
               ))}
             </select>
-            {/* div to display the validation error message */}
-            <div>{this.state.validationError}</div>
+            
           </label>
           {/* input to create your company if not on the previous list */}
           Do you allow other lunchmates to you you to go to lunch?

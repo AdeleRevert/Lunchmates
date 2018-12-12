@@ -23,14 +23,14 @@ class RestaurantsList extends Component {
       //console.log("Response data of shop/searchTerm:", response.data);
       const listOfShops = response.data.shop.businesses;
       for (let i = 0; i < listOfShops.length; i++) {
-        console.log("true", response.data.user.yelpFavorites.includes(listOfShops[i].id));
+        //console.log("true", response.data.user.yelpFavorites.includes(listOfShops[i].id));
         if (response.data.user.yelpFavorites.includes(listOfShops[i].id)) {
           listOfShops[i].shopinFav = true;  
         } else {
           listOfShops[i].shopinFav = false;
         }
       }
-      console.log("listOfShops", listOfShops);
+      //console.log("listOfShops", listOfShops);
     this.setState({ searchResults: listOfShops });
       
     })
@@ -51,17 +51,17 @@ class RestaurantsList extends Component {
     //("RestoList/searchTerm", searchTerm)
     axios.get(`http://localhost:5000/api/shop/${searchTerm}`, { withCredentials: true })
     .then(response => {
-      console.log("Response data of shop/searchTerm:", response.data);
+      //console.log("Response data of shop/searchTerm:", response.data);
       const listOfShops = response.data.shop.businesses;
       for (let i = 0; i < listOfShops.length; i++) {
-        console.log("true", response.data.user.yelpFavorites.includes(listOfShops[i].id));
+        //console.log("true", response.data.user.yelpFavorites.includes(listOfShops[i].id));
         if (response.data.user.yelpFavorites.includes(listOfShops[i].id)) {
           listOfShops[i].shopinFav = true;  
         } else {
           listOfShops[i].shopinFav = false;
         }
       }
-      console.log("listOfShops", listOfShops);
+      //console.log("listOfShops", listOfShops);
     this.setState({ searchResults: listOfShops });
     })
     .catch(err => {
@@ -71,12 +71,12 @@ class RestaurantsList extends Component {
   }
 
    addShopToFav(oneResult) {
-    console.log(oneResult);
+    
     const id = oneResult.id;
-    console.log("id", id);
+    //console.log("id", id);
     return axios.put(`http://localhost:5000/api/add-shop/${id}`, {}, { withCredentials: true })
     .then(response => {
-      console.log("Response data of adding a resto to fav", response.data);
+      //console.log("Response data of adding a resto to fav", response.data);
       this.setState({ shopFavored: true })
     })
     .catch(err => {

@@ -16,25 +16,28 @@ class HomePage extends Component {
   }
 
   componentDidMount() {
-    axios
-    .get("http://localhost:5000/api/user-company", { withCredentials: true })
-    .then(response => {
-      console.log("response.data", response.data)
-      const { addressCoordinates } = response.data;
-      const name = response.data.name;
-      console.log("company name", name)
-      console.log("company address", addressCoordinates.string)
-      this.setState({ companyName: name, companyAddress: addressCoordinates.string})
-    })
-    .catch(err => {
-      console.log("user company info", err);
-      alert("Sorry! Something went wrong.")
-    })
+    // We check if the user is logged-in, if yes, then we send the request to the server (otherwise, it creates an error)
+    if (this.props.currentUser) {
+      axios
+      .get("http://localhost:5000/api/user-company", { withCredentials: true })
+      .then(response => {
+        //console.log("response.data", response.data)
+        const { addressCoordinates } = response.data;
+        const name = response.data.name;
+        console.log("company name", name)
+        console.log("company address", addressCoordinates.string)
+        this.setState({ companyName: name, companyAddress: addressCoordinates.string})
+      })
+      .catch(err => {
+        console.log("user company info", err);
+        alert("Sorry! Something went wrong.")
+      })
+    }
   }
 
   render() {
     const { currentUser } = this.props;
-    console.log(currentUser);
+    //console.log(currentUser);
     const { companyName } = this.state;
     console.log("HEYAAAAAAA", companyName);
     const {companyAddress} = this.state;
