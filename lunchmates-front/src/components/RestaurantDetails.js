@@ -49,7 +49,8 @@ class RestaurantDetails extends Component {
   }
 
   render() {
-    const { name, rating, location, display_phone, price, image_url } = this.state;
+    const shopId = this.state.id;
+    const { name, rating, display_phone, price, image_url } = this.state;
     return (
       <section className="RestaurantDetails">
         <h2>Hey I'm your Restaurant Details Component!</h2>
@@ -75,7 +76,7 @@ class RestaurantDetails extends Component {
 
         <div className="ReviewsList">
         {/* show the component AddReview when the user click on the Add a Review button */}
-        <AddReview className="HiddenAddReviewForm" />
+        <AddReview  shop={shopId} className="HiddenAddReviewForm" />
 
         <OneReview />
 

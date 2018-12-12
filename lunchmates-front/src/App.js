@@ -10,6 +10,7 @@ import ResearchResultsListPage from "./components/ResearchResultsListPage";
 import RestaurantDetails from "./components/RestaurantDetails.js";
 import NavBar from "./components/NavBar.js";
 import UserProfile from "./components/UserProfile.js";
+import AddReview from "./components/AddReview.js";
 
 class App extends Component {
   constructor(props) {
@@ -80,6 +81,8 @@ class App extends Component {
                     getSearchedTerm={term => this.getSearchedTerm(term)} />
                   } 
             />
+
+            <Route path="/shop-details/:shopId" component={AddReview} />
             
             <Route
               path="/signup-page"

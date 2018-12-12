@@ -14,7 +14,7 @@ class AddReview extends Component {
       timeframe: [],
       types: [],
       price_level: "",
-      comment: "",
+      comment: ""
       // isSubmitSuccessful: false,
     };
   }
@@ -22,28 +22,76 @@ class AddReview extends Component {
   genericSync(event) {
     const { name, value } = event.target;
     this.setState({ [name]: value });
+    console.log(this.state);
   }
 
-  handleChange(event) {
-    const { selectedCuisineTypes } = this.state;
-    this.setState({ selectedCuisineTypes: event.target.value });
-    console.log("cuisine type", selectedCuisineTypes);
-  }
+  // handleChange(event) {
+  //   const { selectedCuisineTypes } = this.state;
+  //   this.setState({ selectedCuisineTypes: event.target.value });
+  //   console.log("cuisine type", selectedCuisineTypes);
+  // }
 
-  handleSubmit(event){
+  handleMultiSelectChangeCuisine = event => {
+    console.log("handleMultiSelectChange");
+    // const { cuisine } = event.target;
+    const allValsCuisine = Array.from(event.target.selectedOptions).map(
+      option => option.value
+    );
+    console.log(this.state.cuisine);
+    this.setState({ cuisine: allValsCuisine });
+  };
+
+  handleMultiSelectChangeDiet = event => {
+    console.log("handleMultiSelectChange");
+    // const { diet } = event.target;
+    const allValsDiet = Array.from(event.target.selectedOptions).map(
+      option => option.value
+    );
+    console.log(this.state.diet);
+    this.setState({ diet: allValsDiet });
+  };
+
+  handleMultiSelectChangeTypes = event => {
+    console.log("handleMultiSelectChange");
+    // const { types } = event.target;
+    const allValsTypes = Array.from(event.target.selectedOptions).map(
+      option => option.value
+    );
+    console.log(this.state.types);
+    this.setState({ types: allValsTypes });
+  };
+
+  handleSubmit(event) {
     event.preventDefault();
+    console.log("PROPS", this.props.shop)
+   // const { params } = this.props.match;
+    const shopId = this.props.shop;
+   // console.log("params from the front", params)
+    console.log("params from the front", shopId)
+
     axios
-    .post("http://localhost:5000/api/add-review", this.state, {withCredentials: true })
-    .then(response => {
-      console.log("add review", response.data);
-      // this.setState({ isSubmitSuccessful: true })
-    })
-    .catch(err => {
-      console.log("add review", err);
-      alert("Sorry! Something went wrong.");
-    });
+      .post(`http://localhost:5000/api/shop-details/${shopId}`, this.state, {
+        withCredentials: true
+      })
+      .then(response => {
+        console.log("add review", response.data);
+        // this.setState({ isSubmitSuccessful: true })
+      })
+      .catch(err => {
+        console.log("add review", err);
+        alert("Sorry! Something went wrong.");
+      });
   }
   render() {
+    const {
+      rating,
+      cuisine,
+      diet,
+      timeframe,
+      types,
+      price_level,
+      comment
+    } = this.state;
     return (
       <div className="AddReview">
         <form onSubmit={event => this.handleSubmit(event)}>
@@ -59,11 +107,12 @@ class AddReview extends Component {
             />
           </label>
           <p>What type of cuisine was it?</p>
-          <select 
-          value={this.state.cuisine} 
-          onChange={event => this.genericSync(event)}
-          multiple={true} 
-          name="cuisine">
+          <select
+            value={this.state.cuisine}
+            onChange={this.handleMultiSelectChangeCuisine}
+            multiple
+            name="cuisine"
+          >
             <option value="American">American</option>
             <option value="British">British</option>
             <option value="Chinese">Chinese</option>
@@ -89,11 +138,12 @@ class AddReview extends Component {
 
           <label>
             What type of diet did you found?
-            <select 
-            value={this.state.diet}
-            onChange={event => this.genericSync(event)}
-            multiple={true} 
-            name="diet">
+            <select
+              value={this.state.diet}
+              onChange={this.handleMultiSelectChangeDiet}
+              multiple
+              name="diet"
+            >
               <option value="Vegan">Vegan</option>
               <option value="Veggie">Veggie</option>
               <option value="Gluten Free">Gluten Free</option>
@@ -107,7 +157,9 @@ class AddReview extends Component {
 
           <label>
             How long did you wait?
-            <select name="timeframe">
+            <select name="timeframe"
+            value={this.state.timeframe}
+            onChange={event => this.genericSync(event)}>
               <option value="quick and easy">Quick and Easy</option>
               <option value="time to chat">Time to chat</option>
               <option value="be patient">Be patient</option>
@@ -116,10 +168,11 @@ class AddReview extends Component {
 
           <label>
             What about the price?
-            <select 
-            value={this.state.price_level}
-            onChange={event => this.genericSync(event)}
-            name="price_level">
+            <select
+              value={this.state.price_level}
+              onChange={event => this.genericSync(event)}
+              name="price_level"
+            >
               <option value="€">€</option>
               <option value="€€">€€</option>
               <option value="€€€">€€€</option>
@@ -131,16 +184,20 @@ class AddReview extends Component {
             Was it possible to sit? And to take away?
             <select 
             value={this.state.types}
-            onChange={event => this.genericSync(event)}
-            name="types">
+            onChange={this.handleMultiSelectChangeTypes}
+            name="types"
+            multiple>
               <option value="Take away">Take away</option>
               <option value="Sit-in">Sit-in</option>
             </select>
           </label>
-          <input 
-          value={this.state.comment}
-          onChange={event => this.genericSync(event)}
-          type="text" name="comment" placeholder="Let the world know!" />
+          <input
+            value={this.state.comment}
+            onChange={event => this.genericSync(event)}
+            type="text"
+            name="comment"
+            placeholder="Let the world know!"
+          />
           <button>Submit Your Review</button>
         </form>
       </div>
