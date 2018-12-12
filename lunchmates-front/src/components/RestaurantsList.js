@@ -11,18 +11,28 @@ class RestaurantsList extends Component {
     this.state = {
       shopFavored: false,
       // empty array that will receive the result once filtered
-      searchResults: []
+      searchResults: [],
     };
   }
   // a modifier par /resto et une search générique par coordonnées de la boite
   componentDidMount() {
     const { searchTerm } = this.props;
-    //const { searchTerm } = this.props;
     //console.log("RestoList/searchTerm", searchTerm)
     axios.get(`http://localhost:5000/api/shop/${searchTerm}`, { withCredentials: true })
     .then(response => {
       //console.log("Response data of shop/searchTerm:", response.data);
-    this.setState({ searchResults: response.data.businesses });
+      const listOfShops = response.data.shop.businesses;
+      for (let i = 0; i < listOfShops.length; i++) {
+        console.log("true", response.data.user.yelpFavorites.includes(listOfShops[i].id));
+        if (response.data.user.yelpFavorites.includes(listOfShops[i].id)) {
+          listOfShops[i].shopinFav = true;  
+        } else {
+          listOfShops[i].shopinFav = false;
+        }
+      }
+      console.log("listOfShops", listOfShops);
+    this.setState({ searchResults: listOfShops });
+      
     })
     .catch(err => {
       console.log("Search page ERROR", err);
@@ -41,8 +51,18 @@ class RestaurantsList extends Component {
     //("RestoList/searchTerm", searchTerm)
     axios.get(`http://localhost:5000/api/shop/${searchTerm}`, { withCredentials: true })
     .then(response => {
-      //console.log("Response data of shop/searchTerm:", response.data);
-    this.setState({ searchResults: response.data.businesses });
+      console.log("Response data of shop/searchTerm:", response.data);
+      const listOfShops = response.data.shop.businesses;
+      for (let i = 0; i < listOfShops.length; i++) {
+        console.log("true", response.data.user.yelpFavorites.includes(listOfShops[i].id));
+        if (response.data.user.yelpFavorites.includes(listOfShops[i].id)) {
+          listOfShops[i].shopinFav = true;  
+        } else {
+          listOfShops[i].shopinFav = false;
+        }
+      }
+      console.log("listOfShops", listOfShops);
+    this.setState({ searchResults: listOfShops });
     })
     .catch(err => {
       console.log("Search page ERROR", err);
@@ -57,7 +77,7 @@ class RestaurantsList extends Component {
     return axios.put(`http://localhost:5000/api/add-shop/${id}`, {}, { withCredentials: true })
     .then(response => {
       console.log("Response data of adding a resto to fav", response.data);
-      //this.setState({ shopFavored: true })
+      this.setState({ shopFavored: true })
     })
     .catch(err => {
       console.log("Add-Shop ERROR", err);
@@ -76,9 +96,20 @@ class RestaurantsList extends Component {
               <li key={oneResult.id}>
                 <img src={oneResult.image_url} alt={oneResult.name}/>
                 <h3><Link to={`/shop-details/${oneResult.id}`}>{oneResult.name}</Link></h3>
-                <p>{oneResult.location.display_address}</p>
+                {/* <p>{oneResult.location.address1} {oneResult.location.zip_code} {oneResult.location.city}</p> */}
                 <p>rating Yelp: {oneResult.rating}</p>
-                <button onClick={() => this.addShopToFav(oneResult)}>+ Add to your favorites</button>
+
+                {oneResult.shopinFav ? 
+                  <p>This place is already in your favorites</p>
+                  :
+                  <div>
+                    {this.state.shopFavored ?
+                    <p>Added to your list of favorites</p> 
+                    :
+                    <button onClick={() => this.addShopToFav(oneResult)}>+ Add to your favorites</button>
+                    }
+                  </div>
+                }
               </li>
             );
           })}

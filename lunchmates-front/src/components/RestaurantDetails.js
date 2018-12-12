@@ -10,6 +10,7 @@ class RestaurantDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      shopInFav: false,
       shopFavored: false,
     };
   }
@@ -20,9 +21,9 @@ class RestaurantDetails extends Component {
     //console.log("params", params);
     axios.get(`http://localhost:5000/api/shop-details/${params.shopId}`, { withCredentials: true })
     .then(response => {
-      console.log("Response data of single restaurant", response.data);
-      if (response.data.user.favorites.includes(params.shopId)) {
-        this.setState({shopFavored: true});
+      //console.log("Response data of single restaurant", response.data);
+      if (response.data.user.yelpFavorites.includes(params.shopId)) {
+        this.setState({shopInFav: true});
       }
       this.setState(response.data.shop);
     })
@@ -37,9 +38,7 @@ class RestaurantDetails extends Component {
     const { params } = this.props.match;
     axios.put(`http://localhost:5000/api/add-shop/${params.shopId}`, {}, { withCredentials: true })
     .then(response => {
-     
-      console.log("Response data of adding a resto to fav", response.data);
-      
+      //console.log("Response data of adding a resto to fav", response.data);
       this.setState({ shopFavored: true })
     })
     .catch(err => {
@@ -65,11 +64,17 @@ class RestaurantDetails extends Component {
             <p>Diets available</p>
             <p>{price}</p>
             
-            {this.state.shopFavored ? 
-            <p>Added to your list of favorites!</p> 
-            : 
-            <button onClick={() => this.addShopToFav()}>+ Add to your favorites</button>}
-            
+            {this.state.shopInFav ? 
+              <p>This place is in your favorites</p> 
+              : 
+              <div> 
+                {this.state.shopFavored ? 
+                <p>Added to your list of favorites!</p> 
+                : 
+                <button onClick={() => this.addShopToFav()}>+ Add to your favorites</button>
+                }
+              </div>
+            }
           </div>
         </div>
 
