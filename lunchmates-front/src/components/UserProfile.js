@@ -12,7 +12,7 @@ class UserProfile extends Component {
 
   render() {
     const { currentUser } = this.props;
-console.log("UserProfile", currentUser)
+    //console.log("UserProfile", currentUser)
     return (
       <section className="UserProfile">
         <div className="UserProfileHeader">

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 import axios from "axios";
 import "./NavBar.css";
 
@@ -24,14 +24,16 @@ class NavBar extends Component {
 
   render() {
     const { currentUser } = this.props;
-    console.log(currentUser);
+    //console.log(currentUser);
     return (
       <section className="NavBar">
         <div className="logo">
+          <NavLink to="/">
           <img
-            src="./images/logo_lunchm8.png"
-            alt="logo"
+            src="./images/logo_lunchm8_black.png"
+            alt="LunchMates"
           />
+          </NavLink>
         </div>
         <nav>
           {currentUser ? (
