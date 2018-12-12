@@ -17,11 +17,13 @@ class RestaurantsList extends Component {
   // a modifier par /resto et une search générique par coordonnées de la boite
   componentDidMount() {
     const { searchTerm } = this.props;
-    //console.log("RestoList/searchTerm", searchTerm)
-    axios.get(`http://localhost:5000/api/shop/${searchTerm}`, { withCredentials: true })
+    console.log("RestoList/searchTerm", searchTerm)
+    axios.get(`http://localhost:5000/api/shop-search/${searchTerm}`, { withCredentials: true })
     .then(response => {
       //console.log("Response data of shop/searchTerm:", response.data);
       const listOfShops = response.data.shop.businesses;
+      
+      // Check if the resto if part of the user's favorites
       for (let i = 0; i < listOfShops.length; i++) {
         //console.log("true", response.data.user.yelpFavorites.includes(listOfShops[i].id));
         if (response.data.user.yelpFavorites.includes(listOfShops[i].id)) {
@@ -35,7 +37,7 @@ class RestaurantsList extends Component {
       
     })
     .catch(err => {
-      console.log("Search page ERROR", err);
+      console.log("Search page ERROR Mount", err);
       alert("Something went wrong with the search, sorray");
     });
   }
@@ -49,9 +51,11 @@ class RestaurantsList extends Component {
     }
 
     //("RestoList/searchTerm", searchTerm)
-    axios.get(`http://localhost:5000/api/shop/${searchTerm}`, { withCredentials: true })
+    axios.get(`http://localhost:5000/api/shop-search/${searchTerm}`, { withCredentials: true })
     .then(response => {
       //console.log("Response data of shop/searchTerm:", response.data);
+      
+      // Check if the resto if part of the user's favorites
       const listOfShops = response.data.shop.businesses;
       for (let i = 0; i < listOfShops.length; i++) {
         //console.log("true", response.data.user.yelpFavorites.includes(listOfShops[i].id));
@@ -65,7 +69,7 @@ class RestaurantsList extends Component {
     this.setState({ searchResults: listOfShops });
     })
     .catch(err => {
-      console.log("Search page ERROR", err);
+      console.log("Search page ERROR Update", err);
       alert("Something went wrong with the search, sorray");
     });
   }

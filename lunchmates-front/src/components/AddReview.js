@@ -98,7 +98,7 @@ class AddReview extends Component {
           <label>
             Rating
             <input
-              value={this.state.rating}
+              value={rating}
               onChange={event => this.genericSync(event)}
               type="number"
               name="rating"
@@ -108,7 +108,7 @@ class AddReview extends Component {
           </label>
           <p>What type of cuisine was it?</p>
           <select
-            value={this.state.cuisine}
+            value={cuisine}
             onChange={this.handleMultiSelectChangeCuisine}
             multiple
             name="cuisine"
@@ -122,7 +122,7 @@ class AddReview extends Component {
             <option value="Indian">Indian</option>
             <option value="Italian">Italian</option>
             <option value="Pizza">Pizza</option>
-            <option value="Japanese">Japense</option>
+            <option value="Japanese">Japanese</option>
             <option value="Mexican">Mexican</option>
             <option value="Moroccan">Moroccan</option>
             <option value="Spanish">Spanish</option>
@@ -139,7 +139,7 @@ class AddReview extends Component {
           <label>
             What type of diet did you found?
             <select
-              value={this.state.diet}
+              value={diet}
               onChange={this.handleMultiSelectChangeDiet}
               multiple
               name="diet"
@@ -158,7 +158,7 @@ class AddReview extends Component {
           <label>
             How long did you wait?
             <select name="timeframe"
-            value={this.state.timeframe}
+            value={timeframe}
             onChange={event => this.genericSync(event)}>
               <option value="quick and easy">Quick and Easy</option>
               <option value="time to chat">Time to chat</option>
@@ -169,7 +169,7 @@ class AddReview extends Component {
           <label>
             What about the price?
             <select
-              value={this.state.price_level}
+              value={price_level}
               onChange={event => this.genericSync(event)}
               name="price_level"
             >
@@ -183,7 +183,7 @@ class AddReview extends Component {
           <label>
             Was it possible to sit? And to take away?
             <select 
-            value={this.state.types}
+            value={types}
             onChange={this.handleMultiSelectChangeTypes}
             name="types"
             multiple>
@@ -192,7 +192,7 @@ class AddReview extends Component {
             </select>
           </label>
           <input
-            value={this.state.comment}
+            value={comment}
             onChange={event => this.genericSync(event)}
             type="text"
             name="comment"

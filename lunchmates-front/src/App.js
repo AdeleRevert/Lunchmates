@@ -51,7 +51,7 @@ class App extends Component {
 
   render() {
     
-    console.log(this.state.currentUser);
+    //console.log(this.state.currentUser);
     return (
       <div className="App">
           <NavBar
@@ -74,7 +74,7 @@ class App extends Component {
                 }
               />
 
-            <Route path="/shop/:searchTerm" component={RestaurantDetails} />
+            <Route path="/shop-search/:searchTerm" component={ResearchResultsListPage} />
             <Route path="/shop-details/:shopId" component={RestaurantDetails} />
             <Route path="/shop" render={() => 
                 < ResearchResultsListPage searchTerm={this.state.searchTerm} 
