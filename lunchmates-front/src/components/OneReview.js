@@ -4,39 +4,36 @@ import axios from "axios";
 class OneReview extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      reviewsArray: []
+    };
   }
 
   componentDidMount() {
     const { reviewsResults } = this.props;
-    const { shopId } = this.props;
-    console.log(shopId);
-    //const { searchTerm } = this.props;
-    console.log("Reviews LIST", reviewsResults)
-    axios.get("http://localhost:5000/api/reviews", { withCredentials: true })
-    .then(response => {
-    console.log("Response data of /reviews:", response.data);
-    // this.setState({ searchResults: response.data.businesses });
-    })
-    .catch(err => {
-      console.log("Search page ERROR", err);
-      alert("Something went wrong with the search, sorray");
-    });
+    const { shop } = this.props;
+    console.log("Reviews LIST", reviewsResults);
+    axios
+      .get(`http://localhost:5000/api/review/${shop}`, { withCredentials: true })
+      .then(response => {
+        console.log("Response data of /reviews by shopId", response.data);
+        const reviewsArray = response.data;
+        this.setState({ reviewsArray });
+        console.log("REVIEWS ARRAY", reviewsArray);
+      })
+      .catch(err => {
+        console.log("Search page ERROR", err);
+        alert("Something went wrong with the search, sorray");
+      });
   }
+  
   render() {
+    const {reviewsArray} = this.state;
+    console.log("REVIEWS ARRAY IN RENDER", reviewsArray);
+
     return (
       <section className="OneReview">
-        <div className="ReviewerPicture">
-          <img src="user-picture" alt="reviewer" />
-        </div>
-        <div className="ReviewInfo">
-        <h3>User Name</h3>
-        <p>Rating</p>
-        <p>Diet found (we're going to bu cute boxes)</p>
-        <p>Cuisine type (we're going to bu cute boxes)</p>
-        <p>Time frame</p>
-        <p>Comment</p>
-        </div>
+       reviewsArray
       </section>
     );
   }

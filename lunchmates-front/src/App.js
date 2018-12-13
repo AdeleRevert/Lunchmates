@@ -82,7 +82,7 @@ class App extends Component {
                   } 
             />
 
-            <Route path="/shop-details/:shopId" component={AddReview} />
+            {/* <Route path="/shop-details/:shopId" component={AddReview} /> */}
             
             <Route
               path="/signup-page"

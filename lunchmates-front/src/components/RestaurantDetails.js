@@ -48,7 +48,8 @@ class RestaurantDetails extends Component {
   }
 
   render() {
-    const shopId = this.state.id;
+    const shopId = this.props.match.params.shopId;
+    console.log("resto details", shopId)
     const { name, rating, display_phone, price, image_url } = this.state;
     return (
       <section className="RestaurantDetails">
@@ -83,7 +84,7 @@ class RestaurantDetails extends Component {
         {/* show the component AddReview when the user click on the Add a Review button */}
         <AddReview  shop={shopId} className="HiddenAddReviewForm" />
 
-        <OneReview />
+        <OneReview shop={shopId}/>
 
         </div>
       </section>

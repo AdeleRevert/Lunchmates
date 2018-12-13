@@ -16,7 +16,6 @@ class Signup extends Component {
       messenger: false,
       currentUser: null,
       companiesArray: [],
-      mesCouillesEnSki: [],
       validationError: "", // prevent the user from selecting the blank company in the dropdown
       isAddingCompany: false,
       companyDoc: "",
@@ -58,9 +57,8 @@ class Signup extends Component {
         withCredentials: true
       })
       .then(response => {
-        const mesCouillesEnSki = response.data;
-        //console.log("XXX", mesCouillesEnSki);
-        this.setState({ mesCouillesEnSki });
+        const companiesArray = response.data;
+        this.setState({ companiesArray });
       })
 
       .catch(err => {
@@ -71,8 +69,8 @@ class Signup extends Component {
 
   onUserChange(companyDoc){
     const { companiesArray } = this.state;
-    const mesCouillesEnSki = companiesArray.push(companyDoc);
-    companiesArray.setState({ companiesArray: mesCouillesEnSki });
+    companiesArray.push(companyDoc);
+    this.setState({ companiesArray });
   }
 
 
@@ -82,9 +80,6 @@ class Signup extends Component {
     if (this.props.currentUser) {
       return <Redirect to="/" />;
     }
-
-    const { mesCouillesEnSki } = this.state;
-    //console.log(mesCouillesEnSki);
 
     return (
       <section className="Signup">
@@ -130,7 +125,7 @@ class Signup extends Component {
                   companyId: event.target.value})
               }
             >
-              {this.state.mesCouillesEnSki.map(oneCompany => (
+              {this.state.companiesArray.map(oneCompany => (
                 <option key={oneCompany._id} value={oneCompany._id}>
                   {oneCompany.name}, {oneCompany.subOffice}
                 </option>

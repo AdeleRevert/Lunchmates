@@ -21,15 +21,10 @@ class AddReview extends Component {
 
   genericSync(event) {
     const { name, value } = event.target;
-    this.setState({ [name]: value });
-    console.log(this.state);
+    this.setState({ [name]: value }, () => {
+      console.log("hello", this.state);
+    });
   }
-
-  // handleChange(event) {
-  //   const { selectedCuisineTypes } = this.state;
-  //   this.setState({ selectedCuisineTypes: event.target.value });
-  //   console.log("cuisine type", selectedCuisineTypes);
-  // }
 
   handleMultiSelectChangeCuisine = event => {
     console.log("handleMultiSelectChange");
@@ -37,8 +32,9 @@ class AddReview extends Component {
     const allValsCuisine = Array.from(event.target.selectedOptions).map(
       option => option.value
     );
-    console.log(this.state.cuisine);
-    this.setState({ cuisine: allValsCuisine });
+    this.setState({ cuisine: allValsCuisine }, () => {
+      console.log(this.state.cuisine);
+    });
   };
 
   handleMultiSelectChangeDiet = event => {
@@ -92,6 +88,7 @@ class AddReview extends Component {
       price_level,
       comment
     } = this.state;
+    console.log(this.props.match);
     return (
       <div className="AddReview">
         <form onSubmit={event => this.handleSubmit(event)}>
