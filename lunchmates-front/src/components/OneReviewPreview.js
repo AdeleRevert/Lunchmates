@@ -11,7 +11,38 @@ class OneReviewPreview extends Component {
   }
 
   componentDidMount() {
-    axios
+    if (this.props.currentUser !== false) {
+      this.getReviews();
+    }
+  }
+
+  componentDidUpdate(oldProps) {
+    if (oldProps.currentUser === false && this.props.currentUser !== false) {
+      this.getReviews();
+    }
+  }
+
+  getReviews() {
+    if(this.props.currentUser){
+      axios
+      .get(process.env.REACT_APP_SERVER_URL + `/api/reviews-workmates`, {
+        withCredentials: true
+      })
+      .then(response => {
+        console.log(
+          "Response data of /all reviews by workmates sorted by createdAt",
+          response.data
+        );
+        this.setState({ allReviewsArray: response.data });
+        console.log("ALL REVIEWS ARRAY by workmates", this.state.allReviewsArray);
+      })
+      .catch(err => {
+        console.log("Search page ERROR", err);
+        alert("Something went wrong with the search, sorray");
+      });
+
+    } else {
+      axios
       .get(process.env.REACT_APP_SERVER_URL + `/api/reviews`, {
         withCredentials: true
       })
@@ -27,6 +58,8 @@ class OneReviewPreview extends Component {
         console.log("Search page ERROR", err);
         alert("Something went wrong with the search, sorray");
       });
+
+    }
   }
 
   render() {

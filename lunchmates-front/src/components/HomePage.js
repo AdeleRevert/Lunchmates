@@ -16,6 +16,16 @@ class HomePage extends Component {
   }
 
   componentDidMount() {
+    this.getCompanyInfo();
+  }
+
+  componentDidUpdate(oldProps) {
+    if (!oldProps.currentUser && this.props.currentUser) {
+      this.getCompanyInfo();
+    }
+  }
+
+  getCompanyInfo() {
     // We check if the user is logged-in, if yes, then we send the request to the server (otherwise, it creates an error)
     if (this.props.currentUser) {
       axios
@@ -71,7 +81,7 @@ class HomePage extends Component {
           )}
 
           <div className="reviewsCaroussel">
-            <OneReviewPreview />
+            <OneReviewPreview currentUser={this.props.currentUser}/>
           </div>
         </div>
 
@@ -82,7 +92,7 @@ class HomePage extends Component {
             <h3>Best Rated Places</h3>
           )}
 
-          <RestaurantPicturePreview />
+          <RestaurantPicturePreview  />
         </div>
       </section>
     );

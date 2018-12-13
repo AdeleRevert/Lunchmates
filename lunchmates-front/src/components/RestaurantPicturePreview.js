@@ -24,7 +24,7 @@ class RestaurantPicturePreview extends Component {
   componentDidMount() { 
     console.log("RestaurantPicturePreview", this.props.currentUser);
     if (this.props.currentUser) {
-      console.log(this.props.currentUser)
+      console.log("heyheyhey", this.props.currentUser)
       axios.get(process.env.REACT_APP_SERVER_URL + `/api/user-favorites`, { withCredentials: true })
         .then(response => {
           //console.log("/user-favorites", response.data);
