@@ -38,11 +38,10 @@ class RestaurantPicturePreview extends Component {
     } else {
 
     axios
-      .get(`http://localhost:5000/api/shop/`, { withCredentials: true })
+      .get(`http://localhost:5000/api/shops/`, { withCredentials: true })
       .then(response => {
         //console.log("Response data of shop/searchTerm:", response.data);
-        const tempArray = response.data.businesses.splice(3, 1);
-        tempArray.slice(0,4);
+        response.data.businesses.splice(4);
         this.setState({ searchResults: response.data.businesses });
       })
       .catch(err => {
