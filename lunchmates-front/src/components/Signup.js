@@ -69,8 +69,9 @@ class Signup extends Component {
 
   onUserChange(companyDoc){
     const { companiesArray } = this.state;
-    companiesArray.push(companyDoc);
-    this.setState({ companiesArray });
+    const companiesArrayCopy = [...companiesArray];
+    companiesArrayCopy.push(companyDoc);
+    this.setState({ companiesArray: companiesArrayCopy });
   }
 
 
