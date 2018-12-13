@@ -72,8 +72,6 @@ class HomePage extends Component {
 
           <div className="reviewsCaroussel">
             <OneReviewPreview />
-            <OneReviewPreview />
-            <OneReviewPreview />
           </div>
         </div>
 

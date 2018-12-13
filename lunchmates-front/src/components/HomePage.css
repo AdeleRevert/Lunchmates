@@ -50,9 +50,9 @@ h2 {
   text-decoration: underline;
 }
 
-.reviewsCaroussel {
+/* .reviewsCaroussel {
   width: 100%;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
-}
+} */
