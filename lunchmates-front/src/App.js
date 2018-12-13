@@ -25,7 +25,7 @@ class App extends Component {
   // CHECK USER
  componentDidMount() {
     axios
-      .get("http://localhost:5000/api/checkuser", { withCredentials: true })
+      .get(process.env.REACT_APP_SERVER_URL + "/api/checkuser", { withCredentials: true })
       .then(response => {
         //console.log("Check user", response.data);
         const { userDoc } = response.data;

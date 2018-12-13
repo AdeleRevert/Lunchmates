@@ -21,7 +21,7 @@ class Login extends Component {
     event.preventDefault();
 
     axios
-    .post("http://localhost:5000/api/login", this.state, { withCredentials: true })
+    .post(process.env.REACT_APP_SERVER_URL + "/api/login", this.state, { withCredentials: true })
     .then(response => {
       //console.log("Login Page", response.data);
       const { userDoc } = response.data;

@@ -66,7 +66,7 @@ class AddReview extends Component {
     console.log("params from the front", shopId)
 
     axios
-      .post(`http://localhost:5000/api/shop-details/${shopId}`, this.state, {
+      .post(process.env.REACT_APP_SERVER_URL + `/api/shop-details/${shopId}`, this.state, {
         withCredentials: true
       })
       .then(response => {

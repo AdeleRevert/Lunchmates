@@ -19,7 +19,7 @@ class RestaurantDetails extends Component {
    
     const { params } = this.props.match;
     //console.log("params", params);
-    axios.get(`http://localhost:5000/api/shop-details/${params.shopId}`, { withCredentials: true })
+    axios.get(process.env.REACT_APP_SERVER_URL + `/api/shop-details/${params.shopId}`, { withCredentials: true })
     .then(response => {
       //console.log("Response data of single restaurant", response.data);
       if (response.data.user.yelpFavorites.includes(params.shopId)) {
@@ -36,7 +36,7 @@ class RestaurantDetails extends Component {
   addShopToFav() {
     console.log("coucou")
     const { params } = this.props.match;
-    axios.put(`http://localhost:5000/api/add-shop/${params.shopId}`, {}, { withCredentials: true })
+    axios.put(process.env.REACT_APP_SERVER_URL + `/api/add-shop/${params.shopId}`, {}, { withCredentials: true })
     .then(response => {
       //console.log("Response data of adding a resto to fav", response.data);
       this.setState({ shopFavored: true })

@@ -12,7 +12,7 @@ class NavBar extends Component {
 
   logOutClick() {
     axios
-      .delete("http://localhost:5000/api/logout", { withCredentials: true })
+      .delete(process.env.REACT_APP_SERVER_URL + "/api/logout", { withCredentials: true })
       .then(() => {
         this.props.onLogOut(null);
       })

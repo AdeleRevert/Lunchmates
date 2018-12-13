@@ -18,7 +18,7 @@ class RestaurantsList extends Component {
   componentDidMount() {
     const { searchTerm } = this.props;
     console.log("RestoList/searchTerm", searchTerm)
-    axios.get(`http://localhost:5000/api/shop-search/${searchTerm}`, { withCredentials: true })
+    axios.get(process.env.REACT_APP_SERVER_URL + `/api/shop-search/${searchTerm}`, { withCredentials: true })
     .then(response => {
       //console.log("Response data of shop/searchTerm:", response.data);
       const listOfShops = response.data.shop.businesses;
@@ -51,7 +51,7 @@ class RestaurantsList extends Component {
     }
 
     //("RestoList/searchTerm", searchTerm)
-    axios.get(`http://localhost:5000/api/shop-search/${searchTerm}`, { withCredentials: true })
+    axios.get(process.env.REACT_APP_SERVER_URL + `/api/shop-search/${searchTerm}`, { withCredentials: true })
     .then(response => {
       //console.log("Response data of shop/searchTerm:", response.data);
       
@@ -78,7 +78,7 @@ class RestaurantsList extends Component {
     
     const id = oneResult.id;
     //console.log("id", id);
-    return axios.put(`http://localhost:5000/api/add-shop/${id}`, {}, { withCredentials: true })
+    return axios.put(process.env.REACT_APP_SERVER_URL + `/api/add-shop/${id}`, {}, { withCredentials: true })
     .then(response => {
       //console.log("Response data of adding a resto to fav", response.data);
       this.setState({ shopFavored: true })

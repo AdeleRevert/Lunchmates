@@ -12,7 +12,7 @@ class OneReview extends Component {
   componentDidMount() {
     const { shop } = this.props;
     axios
-      .get(`http://localhost:5000/api/review/${shop}`, { withCredentials: true })
+      .get(process.env.REACT_APP_SERVER_URL + `/api/review/${shop}`, { withCredentials: true })
       .then(response => {
         console.log("Response data of /reviews by shopId", response.data);
         this.setState({ reviewsArray: response.data });

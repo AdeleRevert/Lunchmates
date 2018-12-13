@@ -22,7 +22,7 @@ class AddCompany extends React.Component {
     event.preventDefault();
     console.log("SUBMIT THIS STATE (add company form)", this.state);
     axios
-      .post("http://localhost:5000/api/add-company", this.state, {
+      .post(process.env.REACT_APP_SERVER_URL + "/api/add-company", this.state, {
         withCredentials: true
       })
       .then(response => {

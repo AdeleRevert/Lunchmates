@@ -36,7 +36,7 @@ class Signup extends Component {
     event.preventDefault();
     //console.log("SUBMIT THIS STATE", this.state)
     axios
-      .post("http://localhost:5000/api/signup", this.state, {
+      .post(process.env.REACT_APP_SERVER_URL + "/api/signup", this.state, {
         withCredentials: true
       })
       .then(response => {
@@ -53,7 +53,7 @@ class Signup extends Component {
   // Retrieve the companies array from the back
   componentDidMount() {
     axios
-      .get("http://localhost:5000/api/companies", {
+      .get(process.env.REACT_APP_SERVER_URL + "/api/companies", {
         withCredentials: true
       })
       .then(response => {

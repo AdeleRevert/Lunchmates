@@ -19,7 +19,7 @@ class HomePage extends Component {
     // We check if the user is logged-in, if yes, then we send the request to the server (otherwise, it creates an error)
     if (this.props.currentUser) {
       axios
-      .get("http://localhost:5000/api/user-company", { withCredentials: true })
+      .get(process.env.REACT_APP_SERVER_URL +  "/api/user-company", { withCredentials: true })
       .then(response => {
         //console.log("response.data", response.data)
         const { addressCoordinates } = response.data;

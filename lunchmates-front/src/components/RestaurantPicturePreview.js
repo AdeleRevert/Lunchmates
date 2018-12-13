@@ -25,7 +25,7 @@ class RestaurantPicturePreview extends Component {
     console.log("RestaurantPicturePreview", this.props.currentUser);
     if (this.props.currentUser) {
       console.log(this.props.currentUser)
-      axios.get(`http://localhost:5000/api/user-favorites`, { withCredentials: true })
+      axios.get(process.env.REACT_APP_SERVER_URL + `/api/user-favorites`, { withCredentials: true })
         .then(response => {
           //console.log("/user-favorites", response.data);
           this.setState({searchResults: response.data.favorites});
@@ -38,7 +38,7 @@ class RestaurantPicturePreview extends Component {
     } else {
 
     axios
-      .get(`http://localhost:5000/api/shops/`, { withCredentials: true })
+      .get(process.env.REACT_APP_SERVER_URL + `/api/shops/`, { withCredentials: true })
       .then(response => {
         //console.log("Response data of shop/searchTerm:", response.data);
         response.data.businesses.splice(4);
