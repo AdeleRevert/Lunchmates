@@ -124,7 +124,7 @@ class AddReview extends Component {
             <option value="Moroccan">Moroccan</option>
             <option value="Spanish">Spanish</option>
             <option value="Thaï">Thaï</option>
-            <option value="Lebansese">Lebansese</option>
+            <option value="Lebanese">Lebanese</option>
             <option value="Turkish">Turkish</option>
             <option value="Vietnamese">Vietnamese</option>
             <option value="Healthy">Healthy</option>

@@ -10,16 +10,13 @@ class OneReview extends Component {
   }
 
   componentDidMount() {
-    const { reviewsResults } = this.props;
     const { shop } = this.props;
-    console.log("Reviews LIST", reviewsResults);
     axios
       .get(`http://localhost:5000/api/review/${shop}`, { withCredentials: true })
       .then(response => {
         console.log("Response data of /reviews by shopId", response.data);
-        const reviewsArray = response.data;
-        this.setState({ reviewsArray });
-        console.log("REVIEWS ARRAY", reviewsArray);
+        this.setState({ reviewsArray: response.data });
+        console.log("REVIEWS ARRAY", this.state.reviewsArray);
       })
       .catch(err => {
         console.log("Search page ERROR", err);
@@ -28,12 +25,42 @@ class OneReview extends Component {
   }
   
   render() {
-    const {reviewsArray} = this.state;
+    const { reviewsArray } = this.state;
     console.log("REVIEWS ARRAY IN RENDER", reviewsArray);
 
     return (
       <section className="OneReview">
-       reviewsArray
+       {reviewsArray.map(oneReview => {
+         return (
+           <div>
+             <div className="ReviewerPicture">
+               <img src="user-picture" alt="reviewer" />
+             </div>
+             <div className="ReviewInfo">
+               <h3>{oneReview.userId.firstName}</h3>
+               <p>{oneReview.rating}</p>
+               <div>{oneReview.diet.map(oneDiet => {
+                 return (
+                   <p>{oneDiet}</p>
+                 )})}
+                 </div>
+               <div>{oneReview.cuisine.map(oneCuisine => {
+                 return (
+                   <p>{oneCuisine}</p>
+                 )})}
+               </div>
+               <p>{oneReview.price_level}</p>
+               <p>{oneReview.timeframe}</p>
+               <p>{oneReview.comment}</p>
+              <div>{oneReview.types.map(oneType => {
+                return (
+                  <p>{oneType}</p>
+                )})}
+              </div>
+            </div>
+           </div>
+         );
+       })}
       </section>
     );
   }
