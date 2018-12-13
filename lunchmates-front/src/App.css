@@ -1,9 +1,10 @@
 .App footer {
-  background-color: #AAD3C9;
+  background-color: black;
   margin: 0;
 }
 
 .App footer p {
   margin: 0;
   padding: 1rem;
+  color: white;
 }

@@ -1,23 +1,40 @@
 .OneReviewPreview {
-  background-color: pink;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   flex-wrap: wrap;
   align-items: center;
-  width: 30%;
-  border-radius: 5px;
-  background-color: rgb(229, 236, 234);
-  border: 2px solid #AAD3C9;
-}
-
-.OneReviewPreview > img {
-  width: 30%;
 }
 
 .ReviewPreview {
+  border-radius: 10px;
+  background-color: rgb(228, 227, 227);
+  width: 32%;
+  height: 15rem;
+  border-radius: 8px;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 70%;
+  flex-direction: row;
+}
+
+.ReviewerPicture {
+  padding-top: 1rem;
+  width: 35%;
+  height: 100%;
+}
+.ReviewerPicture > p{
+  font-size: 1rem;
+}
+
+.ReviewInfo {
+  width: 65%;
+  height: 100%;
+}
+
+.ReviewInfo > p {
+  word-break: break-all;
+  font-size: 1rem;
+}
+
+.ReviewInfo > h2 {
+  margin-top: 20px;
 }

@@ -10,14 +10,13 @@ import ResearchResultsListPage from "./components/ResearchResultsListPage";
 import RestaurantDetails from "./components/RestaurantDetails.js";
 import NavBar from "./components/NavBar.js";
 import UserProfile from "./components/UserProfile.js";
-import AddReview from "./components/AddReview.js";
 
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      currentUser: null,
+      currentUser: false,
       searchTerm: "",
     };
   }
