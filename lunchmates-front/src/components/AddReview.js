@@ -11,9 +11,9 @@ class AddReview extends Component {
       rating: 0,
       cuisine: [],
       diet: [],
-      timeframe: [],
+      timeframe: ["quick and easy"],
       types: [],
-      price_level: "",
+      price_level: "€",
       comment: ""
       // isSubmitSuccessful: false,
     };

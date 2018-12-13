@@ -58,7 +58,10 @@ class Signup extends Component {
       })
       .then(response => {
         const companiesArray = response.data;
-        this.setState({ companiesArray });
+        this.setState({
+          companiesArray,
+          companyId: companiesArray[0]._id,
+        });
       })
 
       .catch(err => {
