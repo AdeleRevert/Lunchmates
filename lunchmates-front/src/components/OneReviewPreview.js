@@ -78,6 +78,7 @@ class OneReviewPreview extends Component {
               </div>
               <div className="ReviewInfo">
                 <h2>{oneReview.rating}/5</h2>
+                <p>{oneReview.shopId.name}</p>
                 <p>{oneReview.comment}</p>
               </div>
             </div>

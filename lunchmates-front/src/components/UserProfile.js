@@ -42,7 +42,7 @@ class UserProfile extends Component {
 
         <div className="MyLastReviews">
           <h2>My last reviews</h2>
-          <OneReview />
+          <OneReview currentUser={this.props.currentUser}/>
         </div>
       </section>
     );
