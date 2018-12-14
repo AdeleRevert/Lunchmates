@@ -113,7 +113,7 @@ class App extends Component {
         </Switch>
 
         <footer>
-          <p>Made with Sparkles</p>
+          <p>Made with Sparkles, by <a target="_blank"  href="https://www.linkedin.com/in/ceciledaguin/">Cécile Daguin</a> et <a target="_blank" href="https://www.linkedin.com/in/adele-revert/">Adèle Revert</a></p>
         </footer>
       </div>
     );

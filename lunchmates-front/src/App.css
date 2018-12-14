@@ -8,3 +8,9 @@
   padding: 1rem;
   color: white;
 }
+
+.App footer a {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+}
