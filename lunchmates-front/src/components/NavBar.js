@@ -30,7 +30,7 @@ class NavBar extends Component {
         <div className="logo">
           <NavLink to="/">
           <img
-            src="./images/logo_lunchm8_black.png"
+            src="../images/logo_lunchm8.png"
             alt="LunchMates"
           />
           </NavLink>

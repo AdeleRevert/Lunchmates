@@ -56,7 +56,7 @@ class HomePage extends Component {
       <section className="HomePage">
 
         <div className="HomePageHeader">
-          <h2>Find the perfect place to have lunch!</h2>
+          <h1>Find the perfect place to have lunch!</h1>
 
           <HomePageSearch getSearchedTerm={this.props.getSearchedTerm}/>
 

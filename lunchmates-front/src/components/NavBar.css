@@ -3,9 +3,8 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 80%;
-  padding-left: 10%;
-  padding-right: 10%;
+  align-content: center;
+  width: 100%;
   background-color: black;
   height: 5rem;
   margin: 0;
@@ -18,8 +17,9 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
-    background-color:black;
+    align-content: center;
+    max-width: 100%;
+    background-color: black;
     height: 5rem;
     margin: 0;
   }
@@ -41,6 +41,7 @@
 
 .logo > img {
   max-height: 100%;
+  margin: auto 0;
 }
 
 .LoggedinUserNav {

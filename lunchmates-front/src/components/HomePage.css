@@ -3,14 +3,22 @@
 }
 
 .HomePageHeader {
-  background-image: url("./images//background-homepage.jpeg");
+  background-image: url("../../src/images/buffet-chicken-cooking-5938\ \(1\).jpg");
   background-size: cover;
   height: 25rem;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background-position:center;
   align-items: center;
+}
+
+.HomePageHeader > h1 {
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  font-size: 3rem;
+  text-shadow: 1px 1px 2px black, 0 0 1em grey, 0 0 0.2em grey;;
 }
 
 h2 {
