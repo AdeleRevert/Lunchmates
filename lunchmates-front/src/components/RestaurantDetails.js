@@ -12,6 +12,7 @@ class RestaurantDetails extends Component {
     this.state = {
       shopInFav: false,
       shopFavored: false,
+      addReview: false,
     };
   }
 
@@ -47,6 +48,10 @@ class RestaurantDetails extends Component {
     });
   }
 
+  addReview() {
+    this.setState({addReview: true});
+  }
+
   render() {
     const shopId = this.props.match.params.shopId;
     console.log("resto details", shopId)
@@ -77,13 +82,17 @@ class RestaurantDetails extends Component {
                 }
               </div>
             }
-          </div>
+              {!this.state.addReview && 
+              <button onClick={() => this.addReview()}>Add a Review</button>
+            }
+              </div>
         </div>
-
+            
         <div className="ReviewsList">
         {/* show the component AddReview when the user click on the Add a Review button */}
-        <AddReview  shop={shopId} className="HiddenAddReviewForm" />
-
+        {this.state.addReview && 
+          <AddReview  shop={shopId} className="HiddenAddReviewForm" />
+        }
         <OneReview shop={shopId}/>
 
         </div>
