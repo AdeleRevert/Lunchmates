@@ -64,7 +64,8 @@ class Search extends Component {
           <label>
             <input onChange={event => this.fetchUserInput(event)}
             value={this.state.userInput}
-            type="text" name="userInput" placeholder="Search..." />
+            type="text" name="userInput" placeholder="Search..." 
+            className="searchInput"/>
           </label>
 
           <label>

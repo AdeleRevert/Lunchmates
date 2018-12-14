@@ -1,0 +1,22 @@
+.Login > form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Login > form > input {
+  text-align: center;
+  border: grey 1px solid;
+  margin: 10px 0px;
+}
+
+.Login > form > button {
+  background-color: grey;
+  width: 10rem;
+  color: white;
+  margin: 10px 0px;
+}
+
+.Login > h2 {
+  margin-top: 50px;
+}

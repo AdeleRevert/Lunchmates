@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
-import "./SignLogPage.css";
+import "./Signup.css";
 import AddCompany from "./AddCompany.js";
 
 class Signup extends Component {
@@ -18,7 +18,7 @@ class Signup extends Component {
       companiesArray: [],
       validationError: "", // prevent the user from selecting the blank company in the dropdown
       isAddingCompany: false,
-      companyDoc: "",
+      companyDoc: ""
     };
   }
 
@@ -60,7 +60,7 @@ class Signup extends Component {
         const companiesArray = response.data;
         this.setState({
           companiesArray,
-          companyId: companiesArray[0]._id,
+          companyId: companiesArray[0]._id
         });
       })
 
@@ -70,13 +70,12 @@ class Signup extends Component {
       });
   }
 
-  onUserChange(companyDoc){
+  onUserChange(companyDoc) {
     const { companiesArray } = this.state;
     const companiesArrayCopy = [...companiesArray];
     companiesArrayCopy.push(companyDoc);
     this.setState({ companiesArray: companiesArrayCopy });
   }
-
 
   render() {
     //console.log(this.state);
@@ -126,7 +125,8 @@ class Signup extends Component {
               value={this.state.companyId}
               onChange={event =>
                 this.setState({
-                  companyId: event.target.value})
+                  companyId: event.target.value
+                })
               }
             >
               {this.state.companiesArray.map(oneCompany => (
@@ -135,37 +135,37 @@ class Signup extends Component {
                 </option>
               ))}
             </select>
-            
           </label>
           {/* input to create your company if not on the previous list */}
-          Do you allow other lunchmates to you you to go to lunch?
-          <input
-            value={this.state.messenger}
-            onChange={event => this.checkboxSync(event)}
-            type="checkbox"
-            name="messenger"
-          />
+          <div className="SignupCheckbox">
+            <input
+              value={this.state.messenger}
+              onChange={event => this.checkboxSync(event)}
+              type="checkbox"
+              name="messenger"
+            />
+            Do you allow other lunchmates to you you to go to lunch?
+          </div>
           {/* Allow user to import their avatar picture from their files */}
           {/* Please, chose your avatar:
           <input type="file" /> */}
           <button>Sign Up</button>
-          
         </form>
 
-                  <label>
-            If your company doesn't appear in the list, please
-            <button onClick={() => this.setState({ isAddingCompany: true })}>
-              add it
-            </button> 
-          </label>
-          {this.state.isAddingCompany && ( 
-          <AddCompany onUserChange={companyDoc => this.onUserChange(companyDoc)} />
-          )}
-
-    </section>
-  );
+        <label>
+          If your company doesn't appear in the list, please
+          <button className="AddCompanyBtn" onClick={() => this.setState({ isAddingCompany: true })}>
+            add it
+          </button>
+        </label>
+        {this.state.isAddingCompany && (
+          <AddCompany
+            onUserChange={companyDoc => this.onUserChange(companyDoc)}
+          />
+        )}
+      </section>
+    );
+  }
 }
-}          
-
 
 export default Signup;

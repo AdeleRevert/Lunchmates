@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import RestaurantsList from "./RestaurantsList.js";
 import Search from "./Search.js";
+import "./ResearchResultsListPage.css";
 
 class ResearchResultsListPage extends Component {
   constructor(props) {

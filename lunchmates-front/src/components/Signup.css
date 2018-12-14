@@ -1,0 +1,40 @@
+.Signup > form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Signup > form > input {
+  text-align: center;
+  border: grey 1px solid;
+  margin: 10px 0px;
+}
+
+.Signup > form > button {
+  background-color: grey;
+  width: 10rem;
+  color: white;
+  margin: 10px 0px;
+}
+
+.SignupCheckbox {
+  display: flex;
+  flex-direction: row;
+}
+
+.SignupCheckbox > input {
+  margin: 0;
+  width: 30px;
+}
+
+.AddCompanyBtn {
+  font-size: 16px;
+  text-decoration: underline;
+  color: black;
+  margin: 10px 0px 30px 0px;
+  font-family: "Roboto Mono", monospace;
+}
+
+.Signup > h2 {
+  margin-top: 50px;
+}

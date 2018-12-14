@@ -10,12 +10,18 @@ code {
     monospace;
 }
 
+h1 {
+  font-family: 'Montserrat', sans-serif;
+}
+
 h2 {
   font-size: 40px;
+  font-family: 'Montserrat', sans-serif;
 }
 
 h3 {
   font-size: 30px;
+  font-family: 'Montserrat', sans-serif;
 }
 
 @media screen and (max-width: 800px)
