@@ -11,17 +11,31 @@ class OneReview extends Component {
 
   componentDidMount() {
     const { shop } = this.props;
-    axios
-      .get(process.env.REACT_APP_SERVER_URL + `/api/review/${shop}`, { withCredentials: true })
+    const { currentUser } = this.props;
+    if (currentUser) {
+      axios.get(process.env.REACT_APP_SERVER_URL + `/api/review-user`, { withCredentials: true })
       .then(response => {
-        console.log("Response data of /reviews by shopId", response.data);
-        this.setState({ reviewsArray: response.data });
-        console.log("REVIEWS ARRAY", this.state.reviewsArray);
+        console.log("Response data of the user reviews", response.data);
+        this.setState({reviewsArray: response.data});
       })
       .catch(err => {
-        console.log("Search page ERROR", err);
-        alert("Something went wrong with the search, sorray");
+        console.log("One Review User ID ERROR", err);
+        alert("Something wen twrong with the retrieval of the reviews of the user, sorry!");
       });
+    } else {
+
+      axios
+        .get(process.env.REACT_APP_SERVER_URL + `/api/review/${shop}`, { withCredentials: true })
+        .then(response => {
+          console.log("Response data of /reviews by shopId", response.data);
+          this.setState({ reviewsArray: response.data });
+          console.log("REVIEWS ARRAY", this.state.reviewsArray);
+        })
+        .catch(err => {
+          console.log("One Review ERROR", err);
+          alert("Something went wrong with the review retrieval, sorray");
+        });
+    }
   }
   
   render() {
@@ -32,7 +46,7 @@ class OneReview extends Component {
       <section className="OneReview">
        {reviewsArray.map(oneReview => {
          return (
-           <div>
+           <div key={oneReview._id}>
              <div className="ReviewerPicture">
                <img src="user-picture" alt="reviewer" />
              </div>
@@ -41,12 +55,12 @@ class OneReview extends Component {
                <p>{oneReview.rating}</p>
                <div>{oneReview.diet.map(oneDiet => {
                  return (
-                   <p>{oneDiet}</p>
+                   <p key={oneDiet}>{oneDiet}</p>
                  )})}
                  </div>
                <div>{oneReview.cuisine.map(oneCuisine => {
                  return (
-                   <p>{oneCuisine}</p>
+                   <p key={oneCuisine}>{oneCuisine}</p>
                  )})}
                </div>
                <p>{oneReview.price_level}</p>
@@ -54,7 +68,7 @@ class OneReview extends Component {
                <p>{oneReview.comment}</p>
               <div>{oneReview.types.map(oneType => {
                 return (
-                  <p>{oneType}</p>
+                  <p key={oneType}>{oneType}</p>
                 )})}
               </div>
             </div>
