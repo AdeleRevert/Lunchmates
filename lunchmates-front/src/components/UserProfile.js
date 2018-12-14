@@ -1,48 +1,68 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-
+import "./UserProfile.css";
 import RestaurantPicturePreview from "./RestaurantPicturePreview.js";
 import OneReview from "./OneReview.js";
+import axios from "axios";
 
 class UserProfile extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      userCompany: "",
+    };
   }
 
+  componentDidMount() {
+      axios.get(process.env.REACT_APP_SERVER_URL + `/api/checkuser`, { withCredentials: true })
+      .then(response => {
+        console.log("Response data of the /checkuser", response.data);
+        const userCompany = response.data.userDoc.companyId.name;
+        console.log("companyName =", userCompany)
+        this.setState({userCompany: response.data.userDoc.companyId.name});
+      })
+      .catch(err => {
+        console.log("One Review User ID ERROR", err);
+        alert("Something wen twrong with the retrieval of the reviews of the user, sorry!");
+      });
+
+    }
   render() {
     const { currentUser } = this.props;
-    //console.log("UserProfile", currentUser)
+    console.log("UserProfile", currentUser);
+    const userCompany = this.state;
+    console.log("userCompany from state", userCompany)
     return (
       <section className="UserProfile">
         <div className="UserProfileHeader">
-          <img src="avatar" alt="user" />
+          <img className="UserPicture" src="https://drive.google.com/file/d/1JiEi2onKlMsOmHKPXKvwuldxpV6Ceojc/view?usp=sharing" alt="user" />
 
           <div className="UserInfo">
-            <h2>Name </h2>
-            <h3>Company </h3>
-            <p>Email</p>
+            <h2>{currentUser.firstName} </h2>
+            <h3>{this.state.userCompany}</h3>
+            <p>{currentUser.email}</p>
 
-            <div>
-              <input type="checkbox" name="messenger"/>
-                Enable other users to contact me and have lunch
-              
-            </div>
+            <div className="UserPreferences">
+              <div>
+              <input className="Checkbox" type="checkbox" name="messenger" />
+              Enable other users to contact me and have lunch
+              </div>
             {/* Display one or the other depending if you are the current user or not */}
-            <div>
+
               <Link to="/">Send A message to have Lunch</Link>
+
             </div>
           </div>
         </div>
 
         <div className="FavoritePlaces">
           <h2>My favorite places</h2>
-          <RestaurantPicturePreview currentUser={this.props.currentUser}/>
+          <RestaurantPicturePreview currentUser={this.props.currentUser} />
         </div>
 
         <div className="MyLastReviews">
           <h2>My last reviews</h2>
-          <OneReview currentUser={this.props.currentUser}/>
+          <OneReview currentUser={this.props.currentUser} />
         </div>
       </section>
     );

@@ -1,0 +1,30 @@
+.UserProfileHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 50px 0px;
+}
+
+.UserPicture {
+  width: 40%;
+}
+
+.Checkbox{
+  width: 20px;
+}
+
+.UserInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.UserPreferences{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.UserPreferences > a {
+  margin-top: 15px;
+}

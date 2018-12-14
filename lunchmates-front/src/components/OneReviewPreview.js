@@ -72,7 +72,7 @@ class OneReviewPreview extends Component {
           return (
             <div className="ReviewPreview">
               <div className="ReviewerPicture">
-                <img src="user-picture" alt="reviewer" />
+                <img src="../images/user.jpeg" alt="reviewer" />
                 <h4>{oneReview.userId.firstName}</h4>
                 {/* <p>{oneReview.userId}</p> */}
               </div>
