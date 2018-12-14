@@ -99,6 +99,7 @@ class AddReview extends Component {
               onChange={event => this.genericSync(event)}
               type="number"
               name="rating"
+              className="Rating"
               max="5"
               min="0"
             />
@@ -193,6 +194,7 @@ class AddReview extends Component {
             onChange={event => this.genericSync(event)}
             type="text"
             name="comment"
+            className="Comment"
             placeholder="Let the world know!"
           />
           <button>Submit Your Review</button>
