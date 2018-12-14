@@ -40,6 +40,38 @@ class OneReview extends Component {
         });
     }
   }
+
+  componentDidUpdate(oldProps) {
+    if (shop === oldProps.shop) {
+      return;
+    }
+    const { shop } = this.props;
+    const { currentUser } = this.props;
+    if (currentUser) {
+      axios.get(process.env.REACT_APP_SERVER_URL + `/api/review-user`, { withCredentials: true })
+      .then(response => {
+        console.log("Response data of the user reviews", response.data);
+        this.setState({reviewsArray: response.data});
+      })
+      .catch(err => {
+        console.log("One Review User ID ERROR", err);
+        alert("Something wen twrong with the retrieval of the reviews of the user, sorry!");
+      });
+    } else {
+
+      axios
+        .get(process.env.REACT_APP_SERVER_URL + `/api/review/${shop}`, { withCredentials: true })
+        .then(response => {
+          console.log("Response data of /reviews by shopId", response.data);
+          this.setState({ reviewsArray: response.data });
+          console.log("REVIEWS ARRAY", this.state.reviewsArray);
+        })
+        .catch(err => {
+          console.log("One Review ERROR", err);
+          alert("Something went wrong with the review retrieval, sorray");
+        });
+    }
+  }
   
   render() {
     const { reviewsArray } = this.state;

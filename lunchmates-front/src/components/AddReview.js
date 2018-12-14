@@ -77,6 +77,8 @@ class AddReview extends Component {
         console.log("add review", err);
         alert("Sorry! Something went wrong.");
       });
+     
+    this.props.updateDetailsPage(false)
   }
   render() {
     const {

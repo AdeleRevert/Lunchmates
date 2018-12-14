@@ -52,6 +52,10 @@ class RestaurantDetails extends Component {
     this.setState({addReview: true});
   }
 
+  updateDetailsPage(bool) {
+    this.setState({addReview: bool});
+  }
+
   render() {
     const shopId = this.props.match.params.shopId;
     console.log("resto details", shopId)
@@ -91,7 +95,7 @@ class RestaurantDetails extends Component {
         <div className="ReviewsList">
         {/* show the component AddReview when the user click on the Add a Review button */}
         {this.state.addReview && 
-          <AddReview  shop={shopId} className="HiddenAddReviewForm" />
+          <AddReview  shop={shopId} updateDetailsPage={() => this.updateDetailsPage()} className="HiddenAddReviewForm" />
         }
         <OneReview shop={shopId}/>
 
