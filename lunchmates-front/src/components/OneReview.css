@@ -1,0 +1,41 @@
+.OneReview {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.ReviewPreview {
+  border-radius: 10px;
+  background-color: rgb(228, 227, 227);
+  width: 32%;
+  height: 15rem;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+}
+
+.ReviewerPicture {
+  padding-top: 1rem;
+  width: 35%;
+  height: 100%;
+}
+.ReviewerPicture > p{
+  font-size: 1rem;
+}
+
+.ReviewInfo {
+  width: 65%;
+  height: 100%;
+}
+
+.ReviewInfo p, .ReviewInfo div {
+  word-break: break-all;
+  font-size: 13px;;
+}
+
+.ReviewInfo > h2 {
+  margin-top: 20px;
+}
