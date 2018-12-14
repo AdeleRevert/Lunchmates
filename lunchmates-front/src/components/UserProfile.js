@@ -10,34 +10,39 @@ class UserProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userCompany: "",
+      userCompany: ""
     };
   }
 
   componentDidMount() {
-      axios.get(process.env.REACT_APP_SERVER_URL + `/api/checkuser`, { withCredentials: true })
+    axios
+      .get(process.env.REACT_APP_SERVER_URL + `/api/checkuser`, {
+        withCredentials: true
+      })
       .then(response => {
         console.log("Response data of the /checkuser", response.data);
         const userCompany = response.data.userDoc.companyId.name;
-        console.log("companyName =", userCompany)
-        this.setState({userCompany: response.data.userDoc.companyId.name});
+        console.log("companyName =", userCompany);
+        this.setState({ userCompany: response.data.userDoc.companyId.name });
       })
       .catch(err => {
         console.log("One Review User ID ERROR", err);
-        alert("Something wen twrong with the retrieval of the reviews of the user, sorry!");
+        alert(
+          "Something wen twrong with the retrieval of the reviews of the user, sorry!"
+        );
       });
-
-    }
+  }
   render() {
     const { currentUser } = this.props;
     console.log("UserProfile", currentUser);
     const userCompany = this.state;
-    console.log("userCompany from state", userCompany)
+    console.log("userCompany from state", userCompany);
     return (
       <section className="UserProfile">
         <div className="UserProfileHeader">
-          <img className="UserPicture" src={userImg} alt="user" />
-
+          <div className="UserPicture">
+            <img src={userImg} alt="user" />
+          </div>
           <div className="UserInfo">
             <h2>{currentUser.firstName} </h2>
             <h3>{this.state.userCompany}</h3>
@@ -45,13 +50,12 @@ class UserProfile extends Component {
 
             <div className="UserPreferences">
               <div>
-              <input className="Checkbox" type="checkbox" name="messenger" />
-              Enable other users to contact me and have lunch
+                <input className="Checkbox" type="checkbox" name="messenger" />
+                Enable other users to contact me and have lunch
               </div>
-            {/* Display one or the other depending if you are the current user or not */}
+              {/* Display one or the other depending if you are the current user or not */}
 
               <Link to="/">Send A message to have Lunch</Link>
-
             </div>
           </div>
         </div>

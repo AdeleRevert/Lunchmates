@@ -1,15 +1,18 @@
 .UserProfileHeader {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   margin: 50px 0px;
 }
 
 .UserPicture {
-  width: 40%;
+  width: 30%;
 }
 
+.UserPicture > img {
+  width: 50%;
+}
 .Checkbox{
   width: 20px;
 }
