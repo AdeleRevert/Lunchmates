@@ -104,7 +104,7 @@ class RestaurantsList extends Component {
           {searchResults.map(oneResult => {
             return (
               <li key={oneResult.id}>
-                <img src={oneResult.image_url} alt={oneResult.name}/>
+                <Link to={`/shop-details/${oneResult.id}`}><img src={oneResult.image_url} alt={oneResult.name}/></Link>
                 <h3><Link to={`/shop-details/${oneResult.id}`}>{oneResult.name}</Link></h3>
                 {/* <p>{oneResult.location.address1} {oneResult.location.zip_code} {oneResult.location.city}</p> */}
                 <p>rating Yelp: {oneResult.rating}</p>

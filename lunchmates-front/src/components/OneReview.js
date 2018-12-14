@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import userImg from "../images/user.jpeg";
 
+import "./OneReview.css";
+
 class OneReview extends Component {
   constructor(props) {
     super(props);
@@ -47,31 +49,30 @@ class OneReview extends Component {
       <section className="OneReview">
        {reviewsArray.map(oneReview => {
          return (
-           <div key={oneReview._id}>
+           <div key={oneReview._id} className="ReviewPreview">
              <div className="ReviewerPicture">
+               <h3>{oneReview.userId.firstName}</h3>
                <img src={userImg} alt="reviewer" />
              </div>
              <div className="ReviewInfo">
-               <h3>{oneReview.userId.firstName}</h3>
-               <p>{oneReview.rating}</p>
-               <div>{oneReview.diet.map(oneDiet => {
-                 return (
-                   <p key={oneDiet}>{oneDiet}</p>
-                 )})}
-                 </div>
-               <div>{oneReview.cuisine.map(oneCuisine => {
-                 return (
-                   <p key={oneCuisine}>{oneCuisine}</p>
-                 )})}
+               <p>Rating: {oneReview.rating} -- Budget: {oneReview.price_level}</p>
+               <p>Expect to wait: {oneReview.timeframe}</p>
+               <div>
+                  {oneReview.diet > 0 && 
+                    <div>
+                    Diets available: {oneReview.diet.map(oneDiet => <p key={oneDiet}>{oneDiet}</p>)}
+                    </div>
+                    }
+                </div>
+                 
+               <div>
+                 Cuisine: {oneReview.cuisine.map(oneCuisine => <p key={oneCuisine}>{oneCuisine}</p>)}
                </div>
-               <p>{oneReview.price_level}</p>
-               <p>{oneReview.timeframe}</p>
-               <p>{oneReview.comment}</p>
-              <div>{oneReview.types.map(oneType => {
-                return (
-                  <p key={oneType}>{oneType}</p>
-                )})}
+               <div>
+                Sit-in or Take-away? {oneReview.types.map(oneType => <p key={oneType}>{oneType}</p>)}
               </div>
+               <p>{oneReview.comment}</p>
+             
             </div>
            </div>
          );
