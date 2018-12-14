@@ -52,7 +52,7 @@ class OneReview extends Component {
            <div key={oneReview._id} className="ReviewPreview">
              <div className="ReviewerPicture">
                <h3>{oneReview.userId.firstName}</h3>
-               <img src={userImg} alt="reviewer" />
+               <img className="userPicture" src={userImg} alt="reviewer" />
              </div>
              <div className="ReviewInfo">
                <p>Rating: {oneReview.rating} -- Budget: {oneReview.price_level}</p>
