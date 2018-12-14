@@ -4,6 +4,7 @@ import "./UserProfile.css";
 import RestaurantPicturePreview from "./RestaurantPicturePreview.js";
 import OneReview from "./OneReview.js";
 import axios from "axios";
+import userImg from "../images/user.jpeg";
 
 class UserProfile extends Component {
   constructor(props) {
@@ -35,7 +36,7 @@ class UserProfile extends Component {
     return (
       <section className="UserProfile">
         <div className="UserProfileHeader">
-          <img className="UserPicture" src="https://drive.google.com/file/d/1JiEi2onKlMsOmHKPXKvwuldxpV6Ceojc/view?usp=sharing" alt="user" />
+          <img className="UserPicture" src={userImg} alt="user" />
 
           <div className="UserInfo">
             <h2>{currentUser.firstName} </h2>
