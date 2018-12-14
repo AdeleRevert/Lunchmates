@@ -1,4 +1,20 @@
 .AddReview > form {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.AddReview {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.Rating {
+  border: 1px solid grey;
+}
+
+.Comment {
+  border: 1px solid grey;
 }

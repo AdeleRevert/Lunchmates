@@ -6,13 +6,19 @@ input {
   padding: 0 20px;
   font-family: "Roboto Mono", monospace;
   background-color: rgba(255,255,255, 0.8);
+  outline: none;
 }
 
-button {
+.HomePageSearch > form > label > button {
   border-radius: 10px;
-  background-color: white;
+  background-color: grey;
   border: none;
   padding: 3px 5px;
   cursor: pointer;
-  margin-left: 5px;
+  margin-left: 15px;
+}
+
+.HomePageSearch > form > label {
+  display: flex;
+  flex-direction: row;
 }

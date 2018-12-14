@@ -27,6 +27,7 @@ class NavBar extends Component {
     //console.log(currentUser);
     return (
       <section className="NavBar">
+      <div className="NavContain">
         <div className="logo">
           <NavLink to="/">
           <img
@@ -45,6 +46,7 @@ class NavBar extends Component {
               <button><NavLink to="/signup-page">Sign Up / Log In</NavLink></button>
           )}
         </nav>
+        </div>
       </section>
     );
   }

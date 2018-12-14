@@ -1,3 +1,16 @@
 .HiddenAddReviewForm {
   display: none;
 }
+
+.RestaurantDetailsHeader > img {
+  width: 30rem;
+}
+
+button {
+  border-radius: 10px;
+  background-color: grey;
+  border: none;
+  padding: 3px 5px;
+  cursor: pointer;
+  margin-left: 15px;
+}
