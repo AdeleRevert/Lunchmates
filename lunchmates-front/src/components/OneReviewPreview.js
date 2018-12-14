@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./OneReviewPreview.css";
 import axios from "axios";
+import userImg from "../images/user.jpeg";
 
 class OneReviewPreview extends Component {
   constructor(props) {
@@ -72,7 +73,7 @@ class OneReviewPreview extends Component {
           return (
             <div className="ReviewPreview">
               <div className="ReviewerPicture">
-                <img src="../images/user.jpeg" alt="reviewer" />
+                <img src={userImg} alt="reviewer" />
                 <h4>{oneReview.userId.firstName}</h4>
                 {/* <p>{oneReview.userId}</p> */}
               </div>

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import userImg from "../images/user.jpeg";
 
 import "./OneReview.css";
 
@@ -50,8 +51,8 @@ class OneReview extends Component {
          return (
            <div key={oneReview._id} className="ReviewPreview">
              <div className="ReviewerPicture">
-               <img src="../images/user.jpeg" alt="reviewer" />
                <h3>{oneReview.userId.firstName}</h3>
+               <img src={userImg} alt="reviewer" />
              </div>
              <div className="ReviewInfo">
                <p>Rating: {oneReview.rating} -- Budget: {oneReview.price_level}</p>
