@@ -24,7 +24,7 @@ class ResearchResultsListPage extends Component {
           getSearchedTerm={this.props.getSearchedTerm}
         />
 
-        <RestaurantsList searchTerm={this.props.searchTerm} />
+        <RestaurantsList currentUser={this.props.currentUser} searchTerm={this.props.searchTerm} />
       </section>
     );
   }

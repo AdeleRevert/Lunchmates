@@ -76,7 +76,7 @@ class App extends Component {
             <Route path="/shop-search/:searchTerm" component={ResearchResultsListPage} />
             <Route path="/shop-details/:shopId" component={RestaurantDetails} />
             <Route path="/shop" render={() => 
-                < ResearchResultsListPage searchTerm={this.state.searchTerm} 
+                < ResearchResultsListPage currentUser={this.state.currentUser} searchTerm={this.state.searchTerm} 
                     getSearchedTerm={term => this.getSearchedTerm(term)} />
                   } 
             />

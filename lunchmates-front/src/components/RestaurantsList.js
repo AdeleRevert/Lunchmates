@@ -23,13 +23,15 @@ class RestaurantsList extends Component {
       //console.log("Response data of shop/searchTerm:", response.data);
       const listOfShops = response.data.shop.businesses;
       
-      // Check if the resto if part of the user's favorites
-      for (let i = 0; i < listOfShops.length; i++) {
-        //console.log("true", response.data.user.yelpFavorites.includes(listOfShops[i].id));
-        if (response.data.user.yelpFavorites.includes(listOfShops[i].id)) {
-          listOfShops[i].shopinFav = true;  
-        } else {
-          listOfShops[i].shopinFav = false;
+      // Check if the resto if part of the user's favorites IF the user is logged-in
+      if (this.props.currentUser) {
+        for (let i = 0; i < listOfShops.length; i++) {
+          //console.log("true", response.data.user.yelpFavorites.includes(listOfShops[i].id));
+          if (response.data.user.yelpFavorites.includes(listOfShops[i].id)) {
+            listOfShops[i].shopinFav = true;  
+          } else {
+            listOfShops[i].shopinFav = false;
+          }
         }
       }
       //console.log("listOfShops", listOfShops);
@@ -55,16 +57,20 @@ class RestaurantsList extends Component {
     .then(response => {
       //console.log("Response data of shop/searchTerm:", response.data);
       
-      // Check if the resto if part of the user's favorites
       const listOfShops = response.data.shop.businesses;
-      for (let i = 0; i < listOfShops.length; i++) {
-        //console.log("true", response.data.user.yelpFavorites.includes(listOfShops[i].id));
-        if (response.data.user.yelpFavorites.includes(listOfShops[i].id)) {
-          listOfShops[i].shopinFav = true;  
-        } else {
-          listOfShops[i].shopinFav = false;
+      
+      // Check if the resto if part of the user's favorites IF the user is logged-in
+      if (this.props.currentUser) {
+        for (let i = 0; i < listOfShops.length; i++) {
+          //console.log("true", response.data.user.yelpFavorites.includes(listOfShops[i].id));
+          if (response.data.user.yelpFavorites.includes(listOfShops[i].id)) {
+            listOfShops[i].shopinFav = true;  
+          } else {
+            listOfShops[i].shopinFav = false;
+          }
         }
       }
+     
       //console.log("listOfShops", listOfShops);
     this.setState({ searchResults: listOfShops });
     })
@@ -103,6 +109,8 @@ class RestaurantsList extends Component {
                 {/* <p>{oneResult.location.address1} {oneResult.location.zip_code} {oneResult.location.city}</p> */}
                 <p>rating Yelp: {oneResult.rating}</p>
 
+                {this.props.currentUser &&
+                <div>
                 {oneResult.shopinFav ? 
                   <p>This place is already in your favorites</p>
                   :
@@ -114,6 +122,9 @@ class RestaurantsList extends Component {
                     }
                   </div>
                 }
+                </div>
+                }
+                
               </li>
             );
           })}
