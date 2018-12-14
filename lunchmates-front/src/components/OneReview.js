@@ -48,7 +48,7 @@ class OneReview extends Component {
          return (
            <div key={oneReview._id}>
              <div className="ReviewerPicture">
-               <img src="user-picture" alt="reviewer" />
+               <img src="../images/user.jpeg" alt="reviewer" />
              </div>
              <div className="ReviewInfo">
                <h3>{oneReview.userId.firstName}</h3>

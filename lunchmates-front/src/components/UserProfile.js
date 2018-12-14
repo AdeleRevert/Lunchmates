@@ -35,7 +35,7 @@ class UserProfile extends Component {
     return (
       <section className="UserProfile">
         <div className="UserProfileHeader">
-          <img classname="UserPicture" src="avatar" alt="user" />
+          <img className="UserPicture" src="https://drive.google.com/file/d/1JiEi2onKlMsOmHKPXKvwuldxpV6Ceojc/view?usp=sharing" alt="user" />
 
           <div className="UserInfo">
             <h2>{currentUser.firstName} </h2>
