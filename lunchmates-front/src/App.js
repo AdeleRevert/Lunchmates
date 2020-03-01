@@ -3,13 +3,13 @@ import { Switch, Route } from "react-router-dom";
 import axios from "axios";
 
 import "./App.css";
-import HomePage from "./components/HomePage.js";
-import NotFound from "./components/NotFound.js";
-import SignLogPage from "./components/SignLogPage.js";
-import ResearchResultsListPage from "./components/ResearchResultsListPage";
-import RestaurantDetails from "./components/RestaurantDetails.js";
-import NavBar from "./components/NavBar.js";
-import UserProfile from "./components/UserProfile.js";
+import HomePage from "./components/HomePage/HomePage.js";
+import NotFound from "./components/NotFound/NotFound.js";
+import SignLogPage from "./components/SignLogPage/SignLogPage.js";
+import ResearchResultsListPage from "./components/ResearchresultsListPage/ResearchResultsListPage";
+import RestaurantDetails from "./components/RestaurantDetails/RestaurantDetails.js";
+import NavBar from "./components/NavBar/NavBar.js";
+import UserProfile from "./components/UserProfile/UserProfile.js";
 
 class App extends Component {
   constructor(props) {

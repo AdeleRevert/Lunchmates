@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import userImg from "../images/user.jpeg";
+import userImg from "../../images/user.jpeg";
 
 import "./OneReview.css";
 

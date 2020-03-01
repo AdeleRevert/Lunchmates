@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
 import "./Signup.css";
-import AddCompany from "./AddCompany.js";
+import AddCompany from "../AddCompany/AddCompany.js";
 
 class Signup extends Component {
   constructor(props) {

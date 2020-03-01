@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import "./OneReviewPreview.css";
 import axios from "axios";
-import userImg from "../images/user.jpeg";
+
+import "./OneReviewPreview.css";
+import userImg from "../../images/user.jpeg";
 
 class OneReviewPreview extends Component {
   constructor(props) {

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import AddReview from "./AddReview";
-import OneReview from "./OneReview.js";
+import AddReview from "../AddReview/AddReview";
+import OneReview from "../OneReview/OneReview.js";
 
 import axios from "axios";
 

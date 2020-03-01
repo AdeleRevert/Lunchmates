@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import HomePageSearch from "./HomePageSearch.js";
-import OneReviewPreview from "./OneReviewPreview.js";
-import RestaurantPicturePreview from "./RestaurantPicturePreview.js";
+import HomePageSearch from "../HomePageSearch/HomePageSearch.js";
+import OneReviewPreview from "../OneReviewPreview/OneReviewPreview.js";
+import RestaurantPicturePreview from "../RestaurantPicturePreview/RestaurantPicturePreview.js";
 import "./HomePage.css";
 import axios from "axios";
 

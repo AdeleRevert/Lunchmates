@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 // import TimeframeRadioButton from "./TimeFrameRadioButton.js";
 // import PriceLevelRadioButton from "./PriceLevelRadioButton.js";
-import "./AddReview.css";
+import "../AddCompany/AddReview.css";
 import axios from "axios";
 
 class AddReview extends Component {

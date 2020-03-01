@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./UserProfile.css";
-import RestaurantPicturePreview from "./RestaurantPicturePreview.js";
-import OneReview from "./OneReview.js";
+import RestaurantPicturePreview from "../RestaurantPicturePreview/RestaurantPicturePreview.js";
+import OneReview from "../OneReview/OneReview.js";
 import axios from "axios";
-import userImg from "../images/user.jpeg";
+import userImg from "../../images/user.jpeg";
 
 class UserProfile extends Component {
   constructor(props) {

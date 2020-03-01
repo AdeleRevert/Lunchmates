@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Login from "./Login";
-import Signup from "./Signup.js";
+import Login from "../Login/Login";
+import Signup from "../Signup/Signup.js";
 
 class SignLogPage extends Component {
   render() { 
